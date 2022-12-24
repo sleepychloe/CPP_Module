@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:05:57 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/23 22:15:39 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 05:58:07 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,8 @@
 #include <iostream>
 #include <string>
 #include "./PhoneBook.hpp"
+#include "./Contact.hpp"
 
-int	main(void);
+int		main(void);
 
 #endif

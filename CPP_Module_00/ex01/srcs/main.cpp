@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:05:05 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/23 23:43:15 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 04:58:35 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,35 +19,42 @@ int	main(void)
 	std::string	check;
 	while (1)
 	{
-		std::cout << "Please enter the command" << std::endl;
+		std::cout << "Please type the command\n(command: ADD, SEARCH, EXIT)" << std::endl;
 		std::getline(std::cin, input);
-		std::cout <<"your input is : " << input << "\n" << "\tIf it is right, please type Y. Otherwise, type N" << std::endl;
-		std::getline(std::cin, check);
-		if (check == "N")
-			continue ;
-		else if (check != "Y")
+		if (input == "")
 		{
+			std::cout << "Input should not be empty: ";
+			continue ;
+		}
+		if (input != "ADD" && input != "SEARCH" && input != "EXIT")
+		{
+			std::cout << "Invalid command: ";
+			continue ;
+		}
+		if (input == "ADD" || input == "SEARCH" || input == "EXIT")
+		{
+			std::cout << "You selected " << input << std::endl;
+			std::cout << "If you want to " << input << ", please type Y. Otherwise, please type N" << std::endl;
+			std::getline(std::cin, check);
 			while (check != "Y" && check != "N")
 			{
-				std::cout << "Please enter Y or N" << std::endl;
+				std::cout << "Invalid command: Please type Y or N" << std::endl;
 				std::getline(std::cin, check);
-				if (check != "Y")
-					continue ;
 			}
-		}
-		if (input == "ADD")
-			PhoneBook.add();
-		else if (input == "SEARCH")
-			std::cout << "input is search" << std::endl;
-		else if (input == "EXIT")
-		{
-			std::cout << "Exit" << std::endl;
-			break ;
-		}
-		else
-		{
-			std::cout << "Invalid command" << std::endl;
-			continue ;
+			if (check == "Y")
+			{
+				if (input == "ADD")
+					PhoneBook.add();
+				else if (input == "SEARCH")
+					PhoneBook.search();
+				else
+				{
+					std::cout << "EXIT" << std::endl;
+					break ;
+				}
+			}
+			else if (check == "N")
+				continue ;
 		}
 	}
 	return (0);

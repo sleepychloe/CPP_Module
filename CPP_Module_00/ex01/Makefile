@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 18:57:57 by yhwang            #+#    #+#              #
-#    Updated: 2022/12/23 22:12:15 by yhwang           ###   ########.fr        #
+#    Updated: 2022/12/24 00:40:12 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,8 @@ CFALGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
 FILES = ./srcs/main \
-		./srcs/PhoneBook
+		./srcs/PhoneBook \
+		./srcs/Contact
 
 SRCS = $(addsuffix .cpp, $(FILES))
 OBJS = $(addsuffix .o, $(FILES))

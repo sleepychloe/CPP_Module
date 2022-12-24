@@ -1,39 +1,42 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   Contact.hpp                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 22:00:13 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 06:52:24 by yhwang           ###   ########.fr       */
+/*   Created: 2022/12/23 23:52:34 by yhwang            #+#    #+#             */
+/*   Updated: 2022/12/24 09:22:42 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
+#ifndef CONTACT_HPP
+# define CONTACT_HPP
 
-# define MAX_CONTACT		8
+# define FIRST_NAME		0
+# define LAST_NAME		1
+# define NICKNAME		2
+# define PHONE_NUMBER		3
+# define DARKEST_SECRET		4
 
 #include <iostream>
 #include <string>
-#include <iomanip>
-#include "./Contact.hpp"
 
-class PhoneBook
+class Contact
 {
 	public:
 
-	PhoneBook();
+	Contact();
 	void		add(void);
+	std::string	get_value(int i);
 	void		search(void);
-	~PhoneBook();
+	~Contact();
 
 	private:
-
-	int		_num_contact;
-	Contact		_Contact[MAX_CONTACT];
-	void		show_phonebook_list(void);
+	std::string	_contact[5];
+	void		add_element(std::string *contact, int i);
+	void		check_valid_input(std::string *contact, int i, std::string str);
+	void		show_input(void);
 };
 
 #endif
