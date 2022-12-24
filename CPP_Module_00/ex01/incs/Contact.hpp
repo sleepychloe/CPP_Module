@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:52:34 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 09:22:42 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 11:06:01 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,12 @@
 # define NICKNAME		2
 # define PHONE_NUMBER		3
 # define DARKEST_SECRET		4
+
+# define BLACK			"\x1b[0m"
+# define RED			"\x1b[31m"
+# define BLUE			"\x1b[34m"
+# define CYAN			"\x1b[36m"
+# define YELLOW			"\x1b[33m"
 
 #include <iostream>
 #include <string>

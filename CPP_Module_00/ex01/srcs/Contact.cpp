@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:54:49 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 09:45:11 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 11:03:30 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ void	Contact::add_element(std::string *contact, int i)
 		str = "darkest secret";
 	while (1)
 	{
-		std::cout << "Please type " << str << std::endl;
+		std::cout << BLUE << "Please type " << str << BLACK <<  std::endl;
 		std::getline(std::cin, contact[i]);
 		if (contact[i] == "")
 		{
-			std::cout << str << " should not be empty: ";
+			std::cout << RED << str << " should not be empty: " << BLACK;
 			continue ;
 		}
 		else
@@ -63,8 +63,8 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 			if (!((65 <= contact[i][j] && contact[i][j] <= 90)
 				|| (97 <= contact[i][j] && contact[i][j] <= 122)))
 			{
-				std::cout << str << " should be consist of alphabets: ";
-				std::cout << "Please type " << str << std::endl;
+				std::cout << RED << str << " should be consist of alphabets: " << BLACK;
+				std::cout << BLUE << "Please type " << str << BLACK << std::endl;
 				std::getline(std::cin, contact[i]);
 			}
 			else
@@ -77,8 +77,8 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 		{			
 			if (!(0 <= contact[i][j] - 48 && contact[i][j] - 48 <= 9))
 			{
-				std::cout << str << " should be consist of number: ";
-				std::cout << "Please type " << str << std::endl;
+				std::cout << RED << str << " should be consist of number: " << BLACK;
+				std::cout << BLUE << "Please type " << str << BLACK << std::endl;
 				std::getline(std::cin, contact[i]);
 			}
 			else
@@ -89,12 +89,12 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 
 void	Contact::show_input(void)
 {
-	std::cout << "Your input is\n" << '\n';
-	std::cout << "1. First name:\t\t" << _contact[FIRST_NAME] << '\n';
-	std::cout << "2. Last name:\t\t" << _contact[LAST_NAME] << '\n';
-	std::cout << "3. Nickname:\t\t" << _contact[NICKNAME] << '\n';
-	std::cout << "4. Phone number:\t" << _contact[PHONE_NUMBER] << '\n';
-	std::cout << "5. Darkest secret:\t" << _contact[DARKEST_SECRET] << '\n';
+	std::cout << YELLOW << "Your input is\n" << BLACK << '\n';
+	std::cout << YELLOW << "1. First name:\t\t" << _contact[FIRST_NAME] << BLACK << '\n';
+	std::cout << YELLOW << "2. Last name:\t\t" << _contact[LAST_NAME] << BLACK << '\n';
+	std::cout << YELLOW << "3. Nickname:\t\t" << _contact[NICKNAME] << BLACK << '\n';
+	std::cout << YELLOW << "4. Phone number:\t" << _contact[PHONE_NUMBER] << BLACK << '\n';
+	std::cout << YELLOW << "5. Darkest secret:\t" << _contact[DARKEST_SECRET] << BLACK << '\n';
 }
 
 void	Contact::add(void)
@@ -105,8 +105,8 @@ void	Contact::add(void)
 		add_element(_contact, i);
 	
 	show_input();
-	std::cout << "If you want to change something, please type the corresponding number\n";
-	std::cout << "Otherwise, please type Y." << std::endl;
+	std::cout << BLUE << "If you want to change something, please type the corresponding number\n";
+	std::cout << "Otherwise, please type Y." << BLACK << std::endl;
 	while (1)
 	{	
 		std::getline(std::cin, check);
@@ -124,12 +124,12 @@ void	Contact::add(void)
 			add_element(_contact, DARKEST_SECRET);
 		else
 		{
-			std::cout << "Invalid command: Please type again" << std::endl;
+			std::cout << RED << "Invalid command: Please type again" << BLACK << std::endl;
 			continue ;
 		}
 		show_input();
-		std::cout << "If you want to change something, please type the corresponding number\n";
-		std::cout << "Otherwise, please type Y." << std::endl;
+		std::cout << BLUE << "If you want to change something, please type the corresponding number\n";
+		std::cout << "Otherwise, please type Y." << BLACK << std::endl;
 		continue ;
 	}
 }
@@ -141,11 +141,11 @@ std::string	Contact::get_value(int i)
 
 void	Contact::search(void)
 {
-	std::cout << "first name:\t\t" << get_value(FIRST_NAME) << std::endl;
-	std::cout << "last name:\t\t" << get_value(LAST_NAME) << std::endl;
-	std::cout << "nickname:\t\t" << get_value(NICKNAME) << std::endl;
-	std::cout << "phone number:\t\t" << get_value(PHONE_NUMBER) << std::endl;
-	std::cout << "darkest secret:\t\t" << get_value(DARKEST_SECRET) << std::endl;
+	std::cout << YELLOW << "first name:\t\t" << get_value(FIRST_NAME) << BLACK << std::endl;
+	std::cout << YELLOW << "last name:\t\t" << get_value(LAST_NAME) << BLACK << std::endl;
+	std::cout << YELLOW << "nickname:\t\t" << get_value(NICKNAME) << BLACK << std::endl;
+	std::cout << YELLOW << "phone number:\t\t" << get_value(PHONE_NUMBER) << BLACK << std::endl;
+	std::cout << YELLOW << "darkest secret:\t\t" << get_value(DARKEST_SECRET) << BLACK << std::endl;
 }
 
 Contact::~Contact()

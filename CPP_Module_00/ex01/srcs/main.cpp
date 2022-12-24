@@ -6,39 +6,44 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:05:05 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 04:58:35 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 11:06:04 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/main.hpp"
 
-int	main(void)
+int	main(int argc, char **argv)
 {
 	PhoneBook	PhoneBook;
 	std::string	input;
 	std::string	check;
+	if (argc != 1)
+	{
+		std::cerr << RED << "Argumet error: (command: ./phonebook)" << BLACK << std::endl;
+		return (1);
+	}
 	while (1)
 	{
-		std::cout << "Please type the command\n(command: ADD, SEARCH, EXIT)" << std::endl;
+		std::cout << CYAN << "Please type the command\n(command: ADD, SEARCH, EXIT)" << BLACK << std::endl;
 		std::getline(std::cin, input);
 		if (input == "")
 		{
-			std::cout << "Input should not be empty: ";
+			std::cout << RED << "Input should not be empty: " << BLACK;
 			continue ;
 		}
 		if (input != "ADD" && input != "SEARCH" && input != "EXIT")
 		{
-			std::cout << "Invalid command: ";
+			std::cout << RED << "Invalid command: " << BLACK;
 			continue ;
 		}
 		if (input == "ADD" || input == "SEARCH" || input == "EXIT")
 		{
-			std::cout << "You selected " << input << std::endl;
-			std::cout << "If you want to " << input << ", please type Y. Otherwise, please type N" << std::endl;
+			std::cout << YELLOW << "You selected " << input << BLACK << std::endl;
+			std::cout << BLUE << "If you want to " << input << ", please type Y. Otherwise, please type N" << BLACK <<  std::endl;
 			std::getline(std::cin, check);
 			while (check != "Y" && check != "N")
 			{
-				std::cout << "Invalid command: Please type Y or N" << std::endl;
+				std::cout << RED << "Invalid command: Please type Y or N" << BLACK << std::endl;
 				std::getline(std::cin, check);
 			}
 			if (check == "Y")
@@ -49,7 +54,7 @@ int	main(void)
 					PhoneBook.search();
 				else
 				{
-					std::cout << "EXIT" << std::endl;
+					std::cout << YELLOW << "EXIT" << BLACK << std::endl;
 					break ;
 				}
 			}
