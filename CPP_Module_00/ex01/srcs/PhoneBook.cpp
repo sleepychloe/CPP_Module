@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:10:03 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 11:04:27 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/24 11:24:54 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	PhoneBook::search(void)
 			std::cout << RED << "Invalid command: " << BLACK;
 			continue ;
 		}
-		if ((_num_contact <= 8 && input[0] - 48 > _num_contact)
+		if (input[0] - 48 == 0 || (_num_contact <= 8 && input[0] - 48 > _num_contact)
 			|| (_num_contact > 8 && input[0] - 48 > 8))
 		{
 			std::cout << RED << "Index is out of range: " << BLACK;
