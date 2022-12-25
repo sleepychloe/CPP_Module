@@ -1,4 +1,4 @@
-//account created
+//Account created
 [19920104_091532] index:0;amount:42;created
 [19920104_091532] index:1;amount:54;created
 [19920104_091532] index:2;amount:957;created
@@ -8,7 +8,7 @@
 [19920104_091532] index:6;amount:754;created
 [19920104_091532] index:7;amount:16576;created
 
-//Account::displayAccountInfos - 1
+//Account::displayAccountInfos #1
 [19920104_091532] accounts:8;total:20049;deposits:0;withdrawals:0
 
 //Account::displayStatus
@@ -21,7 +21,7 @@
 [19920104_091532] index:6;amount:754;deposits:0;withdrawals:0
 [19920104_091532] index:7;amount:16576;deposits:0;withdrawals:0
 
-//Account::displayStatus
+//Account::makeDeposit
 [19920104_091532] index:0;p_amount:42;deposit:5;amount:47;nb_deposits:1
 [19920104_091532] index:1;p_amount:54;deposit:765;amount:819;nb_deposits:1
 [19920104_091532] index:2;p_amount:957;deposit:564;amount:1521;nb_deposits:1
@@ -31,15 +31,10 @@
 [19920104_091532] index:6;p_amount:754;deposit:9;amount:763;nb_deposits:1
 [19920104_091532] index:7;p_amount:16576;deposit:20;amount:16596;nb_deposits:1
 
-
-
-
-
-
-
-//Account::displayAccountInfos - 2
+//Account::displayAccountInfos #2
 [19920104_091532] accounts:8;total:21524;deposits:8;withdrawals:0
 
+//Account::displayStatus
 [19920104_091532] index:0;amount:47;deposits:1;withdrawals:0
 [19920104_091532] index:1;amount:819;deposits:1;withdrawals:0
 [19920104_091532] index:2;amount:1521;deposits:1;withdrawals:0
@@ -49,6 +44,7 @@
 [19920104_091532] index:6;amount:763;deposits:1;withdrawals:0
 [19920104_091532] index:7;amount:16596;deposits:1;withdrawals:0
 
+//Account::makeWithdrawal
 [19920104_091532] index:0;p_amount:47;withdrawal:refused
 [19920104_091532] index:1;p_amount:819;withdrawal:34;amount:785;nb_withdrawals:1
 [19920104_091532] index:2;p_amount:1521;withdrawal:657;amount:864;nb_withdrawals:1
@@ -58,9 +54,10 @@
 [19920104_091532] index:6;p_amount:763;withdrawal:657;amount:106;nb_withdrawals:1
 [19920104_091532] index:7;p_amount:16596;withdrawal:7654;amount:8942;nb_withdrawals:1
 
-//Account::displayAccountInfos - 3
+//Account::displayAccountInfos #3
 [19920104_091532] accounts:8;total:12442;deposits:8;withdrawals:6
 
+//Account::displayStatus
 [19920104_091532] index:0;amount:47;deposits:1;withdrawals:0
 [19920104_091532] index:1;amount:785;deposits:1;withdrawals:1
 [19920104_091532] index:2;amount:864;deposits:1;withdrawals:1
@@ -70,6 +67,7 @@
 [19920104_091532] index:6;amount:106;deposits:1;withdrawals:1
 [19920104_091532] index:7;amount:8942;deposits:1;withdrawals:1
 
+//Account closed
 [19920104_091532] index:0;amount:47;closed
 [19920104_091532] index:1;amount:785;closed
 [19920104_091532] index:2;amount:864;closed

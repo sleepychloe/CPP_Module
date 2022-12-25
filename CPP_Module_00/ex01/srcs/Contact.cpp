@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:54:49 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/24 11:03:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/25 09:03:24 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,62 @@ Contact::Contact()
 	_contact[NICKNAME] = "";
 	_contact[PHONE_NUMBER] = "";
 	_contact[DARKEST_SECRET] = "";
+}
+
+void	Contact::add(void)
+{
+	std::string	check;
+
+	for (int i = 0; i < 5; i++)
+		add_element(_contact, i);
+	show_input();
+	print_msg(CYAN, "If you want to change somethig, please type the corresponding number");
+	print_msg(CYAN, "Otherwise, please type Y");
+	while (1)
+	{	
+		std::cout << "    > ";
+		std::getline(std::cin, check);
+		if (check == "Y")
+			break ;
+		else if (check == "1")
+			add_element(_contact, FIRST_NAME);
+		else if (check == "2")
+			add_element(_contact, LAST_NAME);
+		else if (check == "3")
+			add_element(_contact, NICKNAME);
+		else if (check == "4")
+			add_element(_contact, PHONE_NUMBER);
+		else if (check == "5")
+			add_element(_contact, DARKEST_SECRET);
+		else
+		{
+			print_msg(RED, "Invalid command: Please type again");
+			continue ;
+		}
+		show_input();
+		print_msg(CYAN, "If you want to change somethig, please type the corresponding number");
+		print_msg(CYAN, "Otherwise, please type Y");
+		continue ;
+	}
+}
+
+std::string	Contact::get_value(int i)
+{
+	return (_contact[i]);
+}
+
+void	Contact::search(void)
+{
+	print_msg(YELLOW, "first name:\t  ", get_value(FIRST_NAME));
+	print_msg(YELLOW, "last name:\t  ", get_value(LAST_NAME));
+	print_msg(YELLOW, "nickname:\t  ", get_value(NICKNAME));
+	print_msg(YELLOW, "phone number:\t  ", get_value(PHONE_NUMBER));
+	print_msg(YELLOW, "darkest secret:\t  ", get_value(DARKEST_SECRET));
+}
+
+Contact::~Contact()
+{
+	
 }
 
 void	Contact::add_element(std::string *contact, int i)
@@ -37,11 +93,12 @@ void	Contact::add_element(std::string *contact, int i)
 		str = "darkest secret";
 	while (1)
 	{
-		std::cout << BLUE << "Please type " << str << BLACK <<  std::endl;
+		print_msg(YELLOW, "    Please type ", str);
+		show_prompt(':');
 		std::getline(std::cin, contact[i]);
 		if (contact[i] == "")
 		{
-			std::cout << RED << str << " should not be empty: " << BLACK;
+			print_msg(RED, "    ", str, "should not be empty");
 			continue ;
 		}
 		else
@@ -60,12 +117,11 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 	{
 		while (j < contact[i].length())
 		{			
-			if (!((65 <= contact[i][j] && contact[i][j] <= 90)
-				|| (97 <= contact[i][j] && contact[i][j] <= 122)))
+			if ((!((65 <= contact[i][j] && contact[i][j] <= 90)
+				|| (97 <= contact[i][j] && contact[i][j] <= 122))))
 			{
-				std::cout << RED << str << " should be consist of alphabets: " << BLACK;
-				std::cout << BLUE << "Please type " << str << BLACK << std::endl;
-				std::getline(std::cin, contact[i]);
+				print_msg(RED, "    ", str, " should be consist of alphabets");
+				add_element(contact, i);
 			}
 			else
 				j++;
@@ -77,9 +133,8 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 		{			
 			if (!(0 <= contact[i][j] - 48 && contact[i][j] - 48 <= 9))
 			{
-				std::cout << RED << str << " should be consist of number: " << BLACK;
-				std::cout << BLUE << "Please type " << str << BLACK << std::endl;
-				std::getline(std::cin, contact[i]);
+				print_msg(RED, "    ", str, " should be consist of number");
+				add_element(contact, i);
 			}
 			else
 				j++;
@@ -89,66 +144,10 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 
 void	Contact::show_input(void)
 {
-	std::cout << YELLOW << "Your input is\n" << BLACK << '\n';
-	std::cout << YELLOW << "1. First name:\t\t" << _contact[FIRST_NAME] << BLACK << '\n';
-	std::cout << YELLOW << "2. Last name:\t\t" << _contact[LAST_NAME] << BLACK << '\n';
-	std::cout << YELLOW << "3. Nickname:\t\t" << _contact[NICKNAME] << BLACK << '\n';
-	std::cout << YELLOW << "4. Phone number:\t" << _contact[PHONE_NUMBER] << BLACK << '\n';
-	std::cout << YELLOW << "5. Darkest secret:\t" << _contact[DARKEST_SECRET] << BLACK << '\n';
-}
-
-void	Contact::add(void)
-{
-	std::string	check;
-
-	for (int i = 0; i < 5; i++)
-		add_element(_contact, i);
-	
-	show_input();
-	std::cout << BLUE << "If you want to change something, please type the corresponding number\n";
-	std::cout << "Otherwise, please type Y." << BLACK << std::endl;
-	while (1)
-	{	
-		std::getline(std::cin, check);
-		if (check == "Y")
-			break ;
-		else if (check == "1")
-			add_element(_contact, FIRST_NAME);
-		else if (check == "2")
-			add_element(_contact, LAST_NAME);
-		else if (check == "3")
-			add_element(_contact, NICKNAME);
-		else if (check == "4")
-			add_element(_contact, PHONE_NUMBER);
-		else if (check == "5")
-			add_element(_contact, DARKEST_SECRET);
-		else
-		{
-			std::cout << RED << "Invalid command: Please type again" << BLACK << std::endl;
-			continue ;
-		}
-		show_input();
-		std::cout << BLUE << "If you want to change something, please type the corresponding number\n";
-		std::cout << "Otherwise, please type Y." << BLACK << std::endl;
-		continue ;
-	}
-}
-
-std::string	Contact::get_value(int i)
-{
-	return (_contact[i]);
-}
-
-void	Contact::search(void)
-{
-	std::cout << YELLOW << "first name:\t\t" << get_value(FIRST_NAME) << BLACK << std::endl;
-	std::cout << YELLOW << "last name:\t\t" << get_value(LAST_NAME) << BLACK << std::endl;
-	std::cout << YELLOW << "nickname:\t\t" << get_value(NICKNAME) << BLACK << std::endl;
-	std::cout << YELLOW << "phone number:\t\t" << get_value(PHONE_NUMBER) << BLACK << std::endl;
-	std::cout << YELLOW << "darkest secret:\t\t" << get_value(DARKEST_SECRET) << BLACK << std::endl;
-}
-
-Contact::~Contact()
-{
-	
+	print_msg(YELLOW, "Your input is");
+	print_msg(YELLOW, "    1. First name:\t", _contact[FIRST_NAME]);
+	print_msg(YELLOW, "    2. Last name:\t", _contact[LAST_NAME]);
+	print_msg(YELLOW, "    3. Nickname:\t", _contact[NICKNAME]);
+	print_msg(YELLOW, "    4. Phone number:\t", _contact[PHONE_NUMBER]);
+	print_msg(YELLOW, "    5. Darkest secret:\t", _contact[DARKEST_SECRET]);
 }

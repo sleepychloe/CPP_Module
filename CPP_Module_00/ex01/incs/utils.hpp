@@ -1,19 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   PhoneBook.hpp                                      :+:      :+:    :+:   */
+/*   utils.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/12/23 22:00:13 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 07:47:20 by yhwang           ###   ########.fr       */
+/*   Created: 2022/12/25 07:43:09 by yhwang            #+#    #+#             */
+/*   Updated: 2022/12/25 08:30:16 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef PHONEBOOK_HPP
-# define PHONEBOOK_HPP
-
-# define MAX_CONTACT		8
+#ifndef UTILS_HPP
+# define UTILS_HPP
 
 # define BLACK			"\x1b[0m"
 # define RED			"\x1b[31m"
@@ -22,23 +20,13 @@
 
 #include <iostream>
 #include <string>
-#include <iomanip>
-#include "./Contact.hpp"
-#include "./utils.hpp"
 
-class PhoneBook
-{
-public:
-	PhoneBook();
-	void		add(void);
-	void		search(void);
-	~PhoneBook();
-
-private:
-	int		_num_contact;
-	Contact		_Contact[MAX_CONTACT];
-
-	void		show_phonebook_list(void);
-};
+void		argument_err_exit(void);
+void		print_msg(std::string color, std::string msg);
+void		print_msg(std::string color, std::string msg, int n);
+void		print_msg(std::string color, std::string msg1, int n, std::string msg2);
+void		print_msg(std::string color, std::string msg, std::string s);
+void		print_msg(std::string color, std::string msg1, std::string s, std::string msg2);
+void		show_prompt(char c);
 
 #endif

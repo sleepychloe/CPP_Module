@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 18:57:57 by yhwang            #+#    #+#              #
-#    Updated: 2022/12/24 00:40:12 by yhwang           ###   ########.fr        #
+#    Updated: 2022/12/25 07:44:36 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,8 @@ RM = rm -f
 
 FILES = ./srcs/main \
 		./srcs/PhoneBook \
-		./srcs/Contact
+		./srcs/Contact \
+		./srcs/utils
 
 SRCS = $(addsuffix .cpp, $(FILES))
 OBJS = $(addsuffix .o, $(FILES))
