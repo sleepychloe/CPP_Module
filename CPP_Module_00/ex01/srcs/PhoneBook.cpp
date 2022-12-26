@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:10:03 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 08:26:02 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/26 08:29:35 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ void	PhoneBook::show_phonebook_list(void)
 			if (first_name.length() > 10)
 			{
 				for (int i = first_name.length(); i > 10; i--)
-					first_name.pop_back();
+					first_name.pop_back();//pop_back is for c++11 -> edit
 				first_name[9] = '.';
 			}
 			if (last_name.length() > 10)
