@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:10:03 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/26 08:29:35 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/26 13:32:38 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,21 +135,18 @@ void	PhoneBook::show_phonebook_list(void)
 			nickname = _Contact[i % MAX_CONTACT].get_value(NICKNAME);
 			if (first_name.length() > 10)
 			{
-				for (int i = first_name.length(); i > 10; i--)
-					first_name.pop_back();//pop_back is for c++11 -> edit
-				first_name[9] = '.';
+				first_name = first_name.substr(0, 9);
+				first_name += '.';
 			}
 			if (last_name.length() > 10)
 			{
-				for (int i = last_name.length(); i > 10; i--)
-					last_name.pop_back();
-				last_name[9] = '.';
+				last_name = last_name.substr(0, 9);
+				last_name += '.';
 			}
 			if (nickname.length() > 10)
 			{
-				for (int i = nickname.length(); i > 10; i--)
-					nickname.pop_back();
-				nickname[9] = '.';
+				nickname = nickname.substr(0, 9);
+				nickname += '.';
 			}
 			if (i <= 7)
 			{
@@ -157,7 +154,7 @@ void	PhoneBook::show_phonebook_list(void)
 					<< std::setw(10) << (i % MAX_CONTACT) + 1 << '|'
 					<< std::setw(10) << first_name << '|'
 					<< std::setw(10) << last_name << '|'
-					<< std::setw(10) << nickname << BLACK << std::endl;
+					<< std::setw(10) << nickname  << BLACK << std::endl;
 			}
 		}
 	}

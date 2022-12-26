@@ -6,12 +6,14 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:52:34 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 07:47:27 by yhwang           ###   ########.fr       */
+/*   Updated: 2022/12/26 13:17:17 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef CONTACT_HPP
 # define CONTACT_HPP
+
+# define MAX_FIELD		5
 
 # define FIRST_NAME		0
 # define LAST_NAME		1
@@ -38,7 +40,7 @@ public:
 	~Contact();
 
 private:
-	std::string	_contact[5];
+	std::string	_contact[MAX_FIELD];
 
 	void		add_element(std::string *contact, int i);
 	void		check_valid_input(std::string *contact, int i, std::string str);

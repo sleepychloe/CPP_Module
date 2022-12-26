@@ -45,7 +45,7 @@ int		main( void ) {
 
 	/* function Account::displayAccountInfors() -> print */
 	Account::displayAccountsInfos(); //#1
-	/* this is for make deposit */
+	/* this is for making deposit */
 	//print current account status -> Account::displayStatus
 	//and then print accout status after make deposit -> Account::makeDeopsit
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
@@ -58,7 +58,7 @@ int		main( void ) {
 
 	/* function Account::displayAccountInfors() -> print */
 	Account::displayAccountsInfos(); //#2
-	/* this is for make withdrawal */
+	/* this is for making withdrawal */
 	//print current account status -> Account::displayStatus
 	//and then print account status after make withdrawal -> Account::makeWithdrawal
 	std::for_each( acc_begin, acc_end, std::mem_fun_ref( &Account::displayStatus ) );
