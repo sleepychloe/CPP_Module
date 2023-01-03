@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:54:49 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 09:03:24 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/03 02:30:19 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,7 +115,7 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 	j = 0;
 	if (i == FIRST_NAME || i == LAST_NAME)
 	{
-		while (j < contact[i].length())
+		while (j < (int)contact[i].length())
 		{			
 			if ((!((65 <= contact[i][j] && contact[i][j] <= 90)
 				|| (97 <= contact[i][j] && contact[i][j] <= 122))))
@@ -129,7 +129,7 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 	}
 	else if (i == PHONE_NUMBER)
 	{
-		while (j < contact[i].length())
+		while (j < (int)contact[i].length())
 		{			
 			if (!(0 <= contact[i][j] - 48 && contact[i][j] - 48 <= 9))
 			{

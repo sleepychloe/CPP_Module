@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:05:05 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 08:38:24 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/03 02:30:54 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,13 @@ int	main(int argc, char **argv)
 	PhoneBook	PhoneBook;
 	std::string	input;
 	std::string	check;
+
+	(void)argv;
 	if (argc != 1)
+	{
 		argument_err_exit();
+		return (1);
+	}
 	while (1)
 	{
 		print_msg(CYAN, "Please type a command: ADD, SEARCH, or EXIT");

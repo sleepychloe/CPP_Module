@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 07:44:06 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 08:30:57 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/03 02:30:42 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ void	argument_err_exit(void)
 {
 	std::cerr << RED << "Argumet error: Please put valid command\n"
 		<< "(command: ./phonebook)" << BLACK << std::endl;
-	std::exit (1);
 }
 
 void	print_msg(std::string color, std::string msg)

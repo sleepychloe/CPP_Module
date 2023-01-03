@@ -6,13 +6,13 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/24 19:38:14 by yhwang            #+#    #+#              #
-#    Updated: 2022/12/24 23:04:45 by yhwang           ###   ########.fr        #
+#    Updated: 2023/01/03 02:35:11 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = account
 CC = c++
-CFALGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
 FILES = test \
