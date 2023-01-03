@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 19:05:05 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 02:30:54 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/03 03:20:30 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,11 @@ int	main(int argc, char **argv)
 		print_msg(CYAN, "Please type a command: ADD, SEARCH, or EXIT");
 		show_prompt('>');
 		std::getline(std::cin, input);
+		if (std::cin.eof())
+		{
+			std::cout << "^D" << std::endl;
+			break ;
+		}
 		if (input == "")
 		{
 			print_msg(RED, "Input should not be empty");
