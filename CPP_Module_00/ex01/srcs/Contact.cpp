@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:54:49 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 02:30:19 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 23:31:14 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,23 @@ Contact::Contact()
 	_contact[DARKEST_SECRET] = "";
 }
 
-void	Contact::add(void)
+int	Contact::add(void)
 {
 	std::string	check;
 
-	for (int i = 0; i < 5; i++)
-		add_element(_contact, i);
+	for (int i = 0; i < MAX_FIELD; i++)
+	{
+		if (add_element(_contact, i))
+			return (1);
+	}
 	show_input();
 	print_msg(CYAN, "If you want to change somethig, please type the corresponding number");
 	print_msg(CYAN, "Otherwise, please type Y");
 	while (1)
-	{	
-		std::cout << "    > ";
+	{
+		show_prompt('>');
 		std::getline(std::cin, check);
+		/* normal operation: 1, 2, 3, 4, or 5 */
 		if (check == "Y")
 			break ;
 		else if (check == "1")
@@ -46,9 +50,25 @@ void	Contact::add(void)
 			add_element(_contact, PHONE_NUMBER);
 		else if (check == "5")
 			add_element(_contact, DARKEST_SECRET);
+		
+		/* error */
 		else
 		{
-			print_msg(RED, "Invalid command: Please type again");
+			/* error check: eof */
+			if (std::cin.eof())
+			{
+				print_eof_msg();
+				return (1);
+			}
+			else
+			{
+				/* error check: empty string */
+				if (check == "")
+					print_empty_str_msg();
+				/* error check: invalid comand */
+				else
+					print_invalid_cmd_msg();
+			}
 			continue ;
 		}
 		show_input();
@@ -56,6 +76,7 @@ void	Contact::add(void)
 		print_msg(CYAN, "Otherwise, please type Y");
 		continue ;
 	}
+	return (0);
 }
 
 std::string	Contact::get_value(int i)
@@ -77,7 +98,7 @@ Contact::~Contact()
 	
 }
 
-void	Contact::add_element(std::string *contact, int i)
+int	Contact::add_element(std::string *contact, int i)
 {
 	std::string	str;
 
@@ -96,16 +117,27 @@ void	Contact::add_element(std::string *contact, int i)
 		print_msg(YELLOW, "    Please type ", str);
 		show_prompt(':');
 		std::getline(std::cin, contact[i]);
-		if (contact[i] == "")
+
+		/* error check: eof */
+		if (std::cin.eof())
 		{
-			print_msg(RED, "    ", str, "should not be empty");
+			print_eof_msg();
+			return (1);
+		}
+		/* error check: empty string */
+		else if (contact[i] == "")
+		{
+			print_msg(RED, "    ", str, " should not be empty");
 			continue ;
 		}
+		/* normal orperation */
 		else
 			break ;
 	}
+	/* check error: invalid command */
 	if (i == FIRST_NAME || i == LAST_NAME || i == PHONE_NUMBER)
 		check_valid_input(contact, i, str);
+	return (0);
 }
 
 void	Contact::check_valid_input(std::string *contact, int i, std::string str)
@@ -113,6 +145,7 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 	int		j;
 
 	j = 0;
+	/* invalid command check: it should be consist of alphabets */
 	if (i == FIRST_NAME || i == LAST_NAME)
 	{
 		while (j < (int)contact[i].length())
@@ -127,6 +160,7 @@ void	Contact::check_valid_input(std::string *contact, int i, std::string str)
 				j++;
 		}
 	}
+	/* invalid command check: it should be consist of number */
 	else if (i == PHONE_NUMBER)
 	{
 		while (j < (int)contact[i].length())

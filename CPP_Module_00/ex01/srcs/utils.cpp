@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 07:44:06 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 02:30:42 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 23:01:40 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,4 +46,20 @@ void	print_msg(std::string color, std::string msg1, std::string s, std::string m
 void	show_prompt(char c)
 {
 	std::cout << "    " << c << ' ';
+}
+
+/* error message */
+void	print_eof_msg(void)
+{
+	std::cout << "^D" << std::endl;
+}
+
+void	print_empty_str_msg(void)
+{
+	print_msg(RED, "Input should not be empty");
+}
+
+void	print_invalid_cmd_msg(void)
+{
+	print_msg(RED, "Invalid command");
 }

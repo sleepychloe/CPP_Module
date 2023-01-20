@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/25 07:43:09 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 08:30:16 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 22:49:25 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,5 +28,10 @@ void		print_msg(std::string color, std::string msg1, int n, std::string msg2);
 void		print_msg(std::string color, std::string msg, std::string s);
 void		print_msg(std::string color, std::string msg1, std::string s, std::string msg2);
 void		show_prompt(char c);
+
+/* error message */
+void		print_eof_msg(void);
+void		print_empty_str_msg(void);
+void		print_invalid_cmd_msg(void);
 
 #endif

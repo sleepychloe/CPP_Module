@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:10:03 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 02:49:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 23:33:29 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,19 @@ PhoneBook::PhoneBook()
 	_num_contact = 0;
 }
 
-void	PhoneBook::add(void)
+int	PhoneBook::add(void)
 {
 	Contact		Contact;
 
 	print_msg(YELLOW, "* YOU ARE ADDING A NEW CONTACT *");
+
+	/* 0 <= _num_contact <= 8 */
 	if (_num_contact <= MAX_CONTACT)
 		print_msg(CYAN, "The number of current contact: ", _num_contact);
+	/* 8 < _num_contact */
 	else
 		print_msg(CYAN, "The number of current contact: 8");
+	
 	if (_num_contact < MAX_CONTACT)
 	{
 		if (_num_contact == 0)
@@ -50,12 +54,14 @@ void	PhoneBook::add(void)
 		else
 			print_msg(CYAN, "Replacing ", _num_contact % (MAX_CONTACT) + 1, "th contact");
 	}
-	Contact.add();
+	if (Contact.add())
+		return (1);
 	_Contact[_num_contact % MAX_CONTACT] = Contact;
 	_num_contact++;
+	return (0);
 }
 
-void	PhoneBook::search(void)
+int	PhoneBook::search(void)
 {
 	std::string	input;
 	std::string	check;
@@ -63,17 +69,32 @@ void	PhoneBook::search(void)
 
 	show_phonebook_list();
 	if (_num_contact == 0)
-		return ;
+		return (0);
 	while (1)
 	{
 		print_msg(CYAN, "Please type a index number you want to see more");
 		show_prompt('>');
 		std::getline(std::cin, input);
-		if (input.length() != 1 || !(0 <= input[0] - 48 && input[0] - 48 <= 9))
+
+		/* error check: eof */
+		if (std::cin.eof())
 		{
-			print_msg(RED, "Invalid command");
+			print_eof_msg();
+			return (1);
+		}
+		/* error check: empty sttring */
+		if (input == "")
+		{
+			print_empty_str_msg();
 			continue ;
 		}
+		/* error check: invalid command */
+		if (input.length() != 1 || !(0 <= input[0] - 48 && input[0] - 48 <= 9))
+		{
+			print_msg(RED, "Invalid command: Please type a index number");
+			continue ;
+		}
+		/* error check: index range */
 		if (input[0] - 48 == 0
 			|| (_num_contact <= 8 && input[0] - 48 > _num_contact)
 			|| (_num_contact > 8 && input[0] - 48 > 8))
@@ -81,19 +102,37 @@ void	PhoneBook::search(void)
 			print_msg(RED, "Index is out of range");
 			continue ;
 		}
+
+		/* normal operation */
 		print_msg(YELLOW, "You selected index ", input[0] - 48);
 		print_msg(CYAN, "If it is right, please type Y. Otherwise, please type N");
 		show_prompt('>');
 		std::getline(std::cin, check);
+		/* error check */
 		while (check != "Y" && check != "N")
 		{
-			print_msg(RED, "Invalid command: Please type Y or N");
-			show_prompt('>');
-			std::getline(std::cin, check);
+			/* error check: eof */
+			if (std::cin.eof())
+			{
+				print_eof_msg();
+				return (1);
+			}
+			else
+			{
+				/* error check: empty string */
+				if (check == "")
+					print_empty_str_msg();
+				/* error check: invalid command */
+				else
+					print_msg(RED, "Invalid command: Please type Y or N");
+				show_prompt('>');
+				std::getline(std::cin, check);
+			}
 		}
+		/* normal operation: Y or N */
 		if (check == "Y")
 			break ;
-		else if (check == "N")
+		else
 			continue ;
 	}
 	int_input = input[0] - 48;
@@ -101,6 +140,7 @@ void	PhoneBook::search(void)
 		_Contact[int_input - 1].search();
 	else
 		_Contact[(int_input % MAX_CONTACT) - 1].search();
+	return (0);
 }
 
 PhoneBook::~PhoneBook()

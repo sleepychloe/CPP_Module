@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 23:52:34 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/26 13:17:17 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 23:13:26 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ class Contact
 {
 public:
 	Contact();
-	void		add(void);
+	int		add(void);
 	std::string	get_value(int i);
 	void		search(void);
 	~Contact();
@@ -42,7 +42,7 @@ public:
 private:
 	std::string	_contact[MAX_FIELD];
 
-	void		add_element(std::string *contact, int i);
+	int		add_element(std::string *contact, int i);
 	void		check_valid_input(std::string *contact, int i, std::string str);
 	void		show_input(void);
 };

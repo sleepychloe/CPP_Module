@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/12/23 22:00:13 by yhwang            #+#    #+#             */
-/*   Updated: 2022/12/25 07:47:20 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/20 23:20:04 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ class PhoneBook
 {
 public:
 	PhoneBook();
-	void		add(void);
-	void		search(void);
+	int		add(void);
+	int		search(void);
 	~PhoneBook();
 
 private:
