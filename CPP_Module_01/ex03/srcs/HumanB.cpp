@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:58:45 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/30 09:01:07 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/01/30 10:00:52 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ HumanB::HumanB()
 {
 }
 
-HumanB::HumanB(std::string name) : _name(name)
+HumanB::HumanB(std::string name) : _name(name), _weapon(NULL)
 {
 }
 
