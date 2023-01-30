@@ -5,13 +5,16 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 05:20:41 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 05:23:23 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/24 05:20:41 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/25 09:55:40 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef ZOMBIE_H
 # define ZOMBIE_H
+
+# define BLACK			"\x1b[0m"
+# define RED			"\x1b[31m"
 
 #include <string>
 #include <iostream>

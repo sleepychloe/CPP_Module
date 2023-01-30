@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/23 18:57:57 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/03 02:51:47 by yhwang           ###   ########.fr        #
+#    Updated: 2023/01/25 06:12:27 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,7 +25,7 @@ OBJS = $(addsuffix .o, $(FILES))
 
 INCS_DIR = ./incs/
 
-.cpp.o: $(SRCS)
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS_DIR)
 
 all: $(NAME)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 05:44:19 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 05:45:10 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/24 05:44:19 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/25 09:56:48 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,9 @@
 
 Zombie::Zombie()
 {
-
 }
 
-Zombie::Zombie(std::string name)
+void	Zombie::set_zombie_name(std::string name)
 {
 	_name = name;
 }

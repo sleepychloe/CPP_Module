@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 03:56:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 05:23:48 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/24 03:56:54 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/25 09:55:58 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,5 +29,5 @@ void	randomChump(std::string name)
 	{
 		Zombie	stackZombie = Zombie(name);
 		stackZombie.announce();
-	}	
+	}
 }

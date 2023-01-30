@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 05:45:47 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 05:46:30 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/24 05:45:47 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/25 09:56:29 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,9 +15,12 @@
 
 #include <string>
 #include <iostream>
+#include <sstream>
 #include "./Zombie.hpp"
 
 Zombie		*zombieHorde(int N, std::string name);
+int		check_int(std::string str);
+int		check_alpha(std::string str);
 int		main(int argc, char **argv);
 
 #endif

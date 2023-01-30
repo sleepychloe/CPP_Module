@@ -1,39 +1,41 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Zombie.cpp                                         :+:      :+:    :+:   */
+/*   HumanA.cpp                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/24 03:56:35 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/25 09:56:03 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/25 10:58:54 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/30 08:46:25 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/Zombie.hpp"
+#include "../incs/HumanA.hpp"
 
-Zombie::Zombie()
+HumanA::HumanA(Weapon& weapon) : _weapon(weapon)
 {
-
 }
 
-Zombie::Zombie(std::string name)
+HumanA::HumanA(std::string name, Weapon& weapon) : _name(name), _weapon(weapon)
 {
-	_name = name;
 }
 
-std::string	Zombie::get_zombie_name(void)
+std::string	HumanA::get_human_name(void)
 {
 	return (_name);
 }
 
-void	Zombie::announce(void)
+std::string	HumanA::get_weapon_type(void)
 {
-	std::cout << get_zombie_name()
-		<< ": " << "BraiiiiiiinnnzzzZ..." << std::endl;
+	return (_weapon.getType());
 }
 
-Zombie::~Zombie()
+void	HumanA::attack(void)
 {
-	std::cout << get_zombie_name() << " is destroyed" << std::endl;
+	std::cout << get_human_name() << " attacks with their "
+		<< get_weapon_type() << std::endl;
+}
+
+HumanA::~HumanA()
+{
 }

@@ -5,31 +5,35 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/24 19:38:14 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/25 06:12:49 by yhwang           ###   ########.fr        #
+#    Created: 2023/01/25 10:58:36 by yhwang            #+#    #+#              #
+#    Updated: 2023/01/25 11:00:14 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = account
+NAME = violence
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-FILES = test \
-		Account
+SRCS_DIR = ./srcs/
 
-SRCS_DIR = ./
+FILES = $(SRCS_DIR)main \
+		$(SRCS_DIR)Weapon \
+		$(SRCS_DIR)HumanA \
+		$(SRCS_DIR)HumanB
 
-SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
-OBJS = $(addprefix $(SRCS_DIR), $(addsuffix .o, $(FILES)))
+INCS_DIR = ./incs
 
-%.o: %.cpp
-	$(CC) $(CFLAGS) -c $< -o $@
+SRCS = $(addsuffix .cpp, $(FILES))
+OBJS = $(addsuffix .o, $(FILES))
+
+%.o: %.cpp $(INCS_DIR)
+	$(CC) $(CFLAGS) -c $< -o $@ -I$(INCS_DIR)
 
 all: $(NAME)
 
 $(NAME): $(OBJS)
-	$(CC) $(CFLAGS) $^ -o $@
+	$(CC) $(CFLAGS) $^ -o $@ -I$(INCS_DIR)
 
 clean:
 	$(RM) $(OBJS)

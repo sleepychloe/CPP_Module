@@ -5,18 +5,17 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/12/24 19:38:14 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/25 06:12:49 by yhwang           ###   ########.fr        #
+#    Created: 2023/01/25 09:59:38 by yhwang            #+#    #+#              #
+#    Updated: 2023/01/25 10:01:42 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = account
+NAME = brain
 CC = c++
 CFLAGS = -Wall -Werror -Wextra -std=c++98
 RM = rm -f
 
-FILES = test \
-		Account
+FILES = main
 
 SRCS_DIR = ./
 

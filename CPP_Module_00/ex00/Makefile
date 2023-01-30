@@ -6,7 +6,7 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 03:15:01 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/03 02:26:32 by yhwang           ###   ########.fr        #
+#    Updated: 2023/01/25 10:00:51 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -22,7 +22,7 @@ SRCS_DIR = ./
 SRCS = $(addprefix $(SRCS_DIR), $(addsuffix .cpp, $(FILES)))
 OBJS = $(addprefix $(SRCS_DIR), $(addsuffix .o, $(FILES)))
 
-.cpp.o: $(SRCS)
+%.o: %.cpp
 	$(CC) $(CFLAGS) -c $< -o $@
 
 all: $(NAME)

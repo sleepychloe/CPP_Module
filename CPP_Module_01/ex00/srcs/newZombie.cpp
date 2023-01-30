@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/03 03:56:46 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/03 05:20:14 by yhwang           ###   ########.fr       */
+/*   Created: 2023/01/24 03:56:46 by yhwang            #+#    #+#             */
+/*   Updated: 2023/01/25 09:55:53 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,6 @@
 
 Zombie	*newZombie(std::string name)
 {
-	Zombie	*newZombie;
-
-	newZombie = new class Zombie(name);
+	Zombie	*newZombie = new Zombie(name);
 	return (newZombie);
 };
