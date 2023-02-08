@@ -6,13 +6,13 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/12/22 03:15:01 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/25 10:00:51 by yhwang           ###   ########.fr        #
+#    Updated: 2023/02/07 14:46:32 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = megaphone
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 FILES = megaphone

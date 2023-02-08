@@ -6,13 +6,13 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/25 09:59:38 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/25 10:01:42 by yhwang           ###   ########.fr        #
+#    Updated: 2023/02/07 14:47:18 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = brain
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 FILES = main

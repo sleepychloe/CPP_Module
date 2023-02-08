@@ -6,18 +6,20 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/30 10:39:42 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/30 10:45:51 by yhwang           ###   ########.fr        #
+#    Updated: 2023/02/07 14:47:36 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = replace
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS_DIR = ./srcs/
+TEST_DIR = ./test_files/
 
 FILES = $(SRCS_DIR)main \
+		$(SRCS_DIR)replace_line
 
 INCS_DIR = ./incs
 
@@ -33,7 +35,7 @@ $(NAME): $(OBJS)
 	$(CC) $(CFLAGS) $^ -o $@ -I$(INCS_DIR)
 
 clean:
-	$(RM) $(OBJS)
+	$(RM) $(OBJS) $(TEST_DIR)*.replace
 
 fclean: clean
 	$(RM) $(NAME)

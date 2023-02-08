@@ -6,13 +6,13 @@
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/01/24 03:53:31 by yhwang            #+#    #+#              #
-#    Updated: 2023/01/25 09:56:08 by yhwang           ###   ########.fr        #
+#    Updated: 2023/02/07 14:47:00 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
 NAME = zombie
 CC = c++
-CFLAGS = -Wall -Werror -Wextra -std=c++98
+CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS_DIR = ./srcs/

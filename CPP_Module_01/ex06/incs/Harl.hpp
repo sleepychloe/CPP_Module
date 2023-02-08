@@ -1,23 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.h                                          :+:      :+:    :+:   */
+/*   Harl.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 10:48:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/06 12:42:18 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/07 14:06:23 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/07 14:08:45 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#ifndef HARL_HPP
+# define HARL_HPP
+
+#define RED	"\x1b[31m"
+#define BLACK	"\x1b[0m"
 
 #include <iostream>
-#include <fstream>
 #include <string>
 
-int		main(int argc, char **argv);
-std::string     replace_line(std::string line, std::string s1, std::string s2);
+class Harl
+{
+public:
+	Harl();
+	void	complain(std::string level);
+	~Harl();
+
+private:
+	void	debug(void);
+	void	info(void);
+	void	warning(void);
+	void	error(void);
+};
 
 #endif

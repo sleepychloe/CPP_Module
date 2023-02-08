@@ -5,39 +5,37 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/25 10:58:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/30 09:02:49 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/06 19:43:47 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/06 20:41:18 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/Weapon.hpp"
-#include "../incs/HumanA.hpp"
-#include "../incs/HumanB.hpp"
+#include "../incs/Harl.h"
 
 int	main(int argc, char **argv)
 {
 	(void)argv;
-	/* error check: argument */
+	/* error check: argument error */
 	if (argc != 1)
+	{
+		std::cout << "Argument error" << std::endl
+			<< "(command: ./harl)" << std::endl;
 		return (1);
-
-	{
-	/* HumanA */
-	Weapon club = Weapon("crude spiked club");
-	HumanA bob("Bob", club);
-	bob.attack();
-	club.setType("some other type of club");
-	bob.attack();
 	}
 
-	{
-	/* HumanB */
-	Weapon club = Weapon("crude spiked club");
-	HumanB jim("Jim");
-	jim.setWeapon(club);	// need to make method setWeapon for HumanB class
-	jim.attack();
-	club.setType("some other type of club");
-	jim.attack();
-	}
+	Harl Harl;
+
+	Harl.complain("DEBUG");
+	std::cout << std::endl;
+
+	Harl.complain("INFO");
+	std::cout << std::endl;
+
+	Harl.complain("WARNING");
+	std::cout << std::endl;
+
+	Harl.complain("ERROR");
+	std::cout << std::endl;
+
 	return (0);
 }

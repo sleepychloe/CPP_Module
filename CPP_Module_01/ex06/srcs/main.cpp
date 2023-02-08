@@ -1,23 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.h                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 10:48:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/06 12:42:18 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/07 14:06:17 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/07 14:58:26 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#include "../incs/Harl.h"
 
-#include <iostream>
-#include <fstream>
-#include <string>
+int	main(int argc, char **argv)
+{
+	/* error check: argument error */
+	if (argc != 2)
+	{
+		std::cout << "Error: Argument error" << std::endl
+			<< "(command: ./HarlFilter msg_you_want_to_put)"
+			<< std::endl;
+		return (1);
+	}
 
-int		main(int argc, char **argv);
-std::string     replace_line(std::string line, std::string s1, std::string s2);
+	std::string level = argv[1];
+	
+	Harl	Harl;
+	Harl.complain(level);
 
-#endif
+	return (0);
+}

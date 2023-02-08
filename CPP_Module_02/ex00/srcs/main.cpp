@@ -1,23 +1,26 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.h                                          :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 10:48:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/06 12:42:18 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/08 06:44:14 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/08 08:06:22 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
-
 #include <iostream>
-#include <fstream>
-#include <string>
+#include "../incs/Fixed.hpp"
 
-int		main(int argc, char **argv);
-std::string     replace_line(std::string line, std::string s1, std::string s2);
-
-#endif
+int	main(void)
+{
+	Fixed a;
+	Fixed b(a);
+	Fixed c;
+	c = b;
+	std::cout << a.getRawBits() << std::endl;
+	std::cout << b.getRawBits() << std::endl;
+	std::cout << c.getRawBits() << std::endl;
+	return (0);
+}

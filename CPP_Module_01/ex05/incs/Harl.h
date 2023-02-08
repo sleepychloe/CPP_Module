@@ -1,23 +1,22 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace.h                                          :+:      :+:    :+:   */
+/*   Harl.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/01/30 10:48:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/06 12:42:18 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/06 19:45:34 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/06 20:37:51 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef REPLACE_H
-# define REPLACE_H
+#ifndef HARL_H
+# define HARL_H
 
 #include <iostream>
-#include <fstream>
 #include <string>
+#include "./Harl.hpp"
 
-int		main(int argc, char **argv);
-std::string     replace_line(std::string line, std::string s1, std::string s2);
+int	main(int argc, char **argv);
 
 #endif

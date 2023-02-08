@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:40:04 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/30 11:29:23 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/06 15:13:22 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,14 +21,10 @@ int	main(int argc, char **argv)
 			<< "(command: ./replace [filename] [s1] [s2])" << std::endl;
 		return (1);
 	}
+
 	std::string	filename = argv[1];
 	std::string	s1 = argv[2];
 	std::string	s2 = argv[3];
-
-
-	std::cout << "filename : " << filename << std::endl;
-	std::cout << "s1: " << s1 << std::endl;
-	std::cout << "s2: " << s2 << std::endl;
 
 	/* declare filestream object to read from file and to write to file */
 	std::ifstream	f_read;
@@ -36,7 +32,6 @@ int	main(int argc, char **argv)
 
 	/* open */
 	f_read.open(filename.c_str(), std::ios::in);
-	f_write.open((filename + ".replace").c_str(), std::ios::out | std::ios::trunc);
 	
 	/* error check: file open */
 	if (f_read.fail())
@@ -53,15 +48,23 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-	std::cout << "ok\n";
-	
+	f_write.open((filename + ".replace").c_str(), std::ios::out | std::ios::trunc);
 
-
+	std::string	line;
+	int		i = 0;
+	while (std::getline(f_read, line))
+	{
+		/* replace each line */
+		line = replace_line(line, s1, s2);
+		f_write << line;
+		if (!(f_read.eof()))
+			f_write << std::endl;
+		i++;
+	}
 
 	/* close */
 	f_read.close();
 	f_write.close();
 
-	
 	return (0);
 }
