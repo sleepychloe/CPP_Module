@@ -1,34 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   replace_line.cpp                                   :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/06 12:30:07 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/09 05:41:59 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/11 00:12:34 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/11 02:13:21 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../incs/replace.h"
+#include "../incs/Point.hpp"
 
-std::string	replace_line(std::string line, std::string s1, std::string s2)
+int	main(int argc, char **argv)
 {
-	std::string	new_line = "";
-	int		pos = 0;
-	int		find = 0;
-
-	while (1)
+	(void)argv;
+	if (argc != 1)
 	{
-		find = line.find(s1, pos);
-		if (find == -1)
-		{
-			new_line += line.substr(pos, std::string::npos);
-			break ;
-		}
-		new_line += line.substr(pos, find - pos);
-		new_line += s2;
-		pos += (find - pos + s1.length());
+		std::cout << "Argument error" << std::endl;
+		return (1);
 	}
-	return (new_line);
+	Point a(0, 0);
+	Point b(10, 0);
+	Point c(5, 5);
+	Point point(5,0);
+
+	if (bsp(a, b, c, point) == 1)
+		std::cout << "ok" << std::endl;
+	
+	return (0);
 }

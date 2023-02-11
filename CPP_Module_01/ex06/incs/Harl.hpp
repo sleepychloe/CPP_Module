@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:06:23 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/07 14:08:45 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/09 06:24:37 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ private:
 	void	info(void);
 	void	warning(void);
 	void	error(void);
+	int	get_harl_level(std::string level);
 };
 
 #endif

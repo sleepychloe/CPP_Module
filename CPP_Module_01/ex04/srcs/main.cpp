@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:40:04 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/06 15:13:22 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/09 05:43:06 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,14 @@ int	main(int argc, char **argv)
 	std::string	filename = argv[1];
 	std::string	s1 = argv[2];
 	std::string	s2 = argv[3];
+
+	/* error check: empty string for s1 */
+	if (s1 == "")
+	{
+		std::cout << "Error: s1" << std::endl
+			<< "s1 should not be empty" << std::endl;
+		return (1);
+	}
 
 	/* declare filestream object to read from file and to write to file */
 	std::ifstream	f_read;

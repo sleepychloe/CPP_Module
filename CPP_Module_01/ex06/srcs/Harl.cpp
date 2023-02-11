@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/07 14:06:21 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/07 14:58:15 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/09 06:29:06 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,43 +16,48 @@ Harl::Harl()
 {
 }
 
+int	Harl::get_harl_level(std::string level)
+{
+	std::string	level_list[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	for (int i = 0; i < 4; i++)
+	{
+		if (level_list[i] == level)
+			return (i);
+	}
+	return (-1);
+}
+
 void	Harl::complain(std::string level)
 {
 	typedef void(Harl::*func_ptr)(void);
 	
 	func_ptr	func[4] = {&Harl::debug, &Harl::info, &Harl::warning, &Harl::error};
-	std::string	level_list[4] = {"DEBUG", "INFO", "WARNING", "ERROR"};
+	int		flag = get_harl_level(level);
 
-	int	flag = 0;
-	for (int i = 0; i < 4; i++)
+	
+	switch(flag)
 	{
-		if (level_list[i] == level)
-		{
-			switch(i)
-			{
-				case 0:
-					(this->*func[i++])();
-					flag++;
-					__attribute__ ((fallthrough));
-				case 1:
-					(this->*func[i++])();
-					flag++;
-					__attribute__ ((fallthrough));
-				case 2:
-					(this->*func[i++])();
-					flag++;
-					__attribute__ ((fallthrough));
-				case 3:
-					(this->*func[i++])();
-					flag++;
-					break ;
-			}
-		}
+		case 0:
+			(this->*func[flag++])();
+			std::cout << std::endl;
+			__attribute__ ((fallthrough));
+		case 1:
+			(this->*func[flag++])();
+			std::cout << std::endl;
+			__attribute__ ((fallthrough));
+		case 2:
+			(this->*func[flag++])();
+			std::cout << std::endl;
+			__attribute__ ((fallthrough));
+		case 3:
+			(this->*func[flag])();
+			break ;
+		default:
+			std:: cout << RED
+				<< "[ Probably complaining about insignificant problems ]"
+				<< BLACK << std::endl;
+			break ;
 	}
-	if (flag == 0)
-		std:: cout << RED
-			<< "[ Probably complaining about insignificant problems ]"
-			<< BLACK << std::endl;
 }
 
 Harl::~Harl()
