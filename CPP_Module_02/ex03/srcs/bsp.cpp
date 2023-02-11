@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 00:12:43 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/11 02:17:04 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:07:40 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,9 +34,28 @@ Fixed	get_triangle_area(Point const p1, Point const p2, Point const p3)
 	return (area);
 }
 
+/* equation of straight line(when there are 2 points P(px, py), Q(qx, qy))
+	: (y - py) = ((qy - py / qx - px)) * (x - px) 
+*/
+int	line_equation_solved(Point const p, Point const q, Point const point)
+{
+	Fixed	delta_x = (q.get_value_x() - p.get_value_x());
+	Fixed	delta_y = (q.get_value_y() - p.get_value_y());
+	Fixed	slope = delta_y / delta_x;
+
+	Fixed	equation_left = point.get_value_y() - p.get_value_y();
+	Fixed	equation_right = slope * (point.get_value_x() - p.get_value_x());
+
+	if (equation_left == equation_right)
+		return (1);
+	return (0);
+}
+
 int	check_triangle_edge(Point const a, Point const b, Point const c, Point const point)
 {
-	
+	if (line_equation_solved(a, b, point) || line_equation_solved(b, c, point)
+		|| line_equation_solved(c, b, point))
+		return (1);
 	return (0);
 }
 
@@ -57,6 +76,7 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 		if (check_triangle_edge(a, b, c, point))
 		{
 			std::cout << "the point is on the edge of the triangle" << std::endl;
+			return (false);
 		}
 		std::cout << "the point is inside the triangle" << std::endl;
 		return (true);

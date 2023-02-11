@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 00:12:34 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/11 02:13:21 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/11 19:07:21 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	main(int argc, char **argv)
 	}
 	Point a(0, 0);
 	Point b(10, 0);
-	Point c(5, 5);
-	Point point(5,0);
+	Point c(10, 10);
+	Point point(5, 0);
 
 	if (bsp(a, b, c, point) == 1)
 		std::cout << "ok" << std::endl;
