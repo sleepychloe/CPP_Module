@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/11 00:12:43 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/11 19:07:40 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/12 13:18:25 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,16 @@ int	line_equation_solved(Point const p, Point const q, Point const point)
 {
 	Fixed	delta_x = (q.get_value_x() - p.get_value_x());
 	Fixed	delta_y = (q.get_value_y() - p.get_value_y());
-	Fixed	slope = delta_y / delta_x;
+	if (delta_x != 0)
+	{
+		Fixed	slope = delta_y / delta_x;
 
-	Fixed	equation_left = point.get_value_y() - p.get_value_y();
-	Fixed	equation_right = slope * (point.get_value_x() - p.get_value_x());
+		Fixed	equation_left = point.get_value_y() - p.get_value_y();
+		Fixed	equation_right = slope * (point.get_value_x() - p.get_value_x());
 
-	if (equation_left == equation_right)
-		return (1);
+		if (equation_left == equation_right)
+			return (1);
+	}
 	return (0);
 }
 
@@ -68,19 +71,19 @@ bool	bsp(Point const a, Point const b, Point const c, Point const point)
 
 	if (a == point || b == point || c == point)
 	{
-		std::cout << "the point is on the one of the vertices of the triangle" << std::endl;
+		std::cout << "the point is on the vertice of the triangle\t║" << std::endl;
 		return (false);
 	}
 	if (area_abc == (Point_a_b + Point_b_c + Point_c_a))
 	{
 		if (check_triangle_edge(a, b, c, point))
 		{
-			std::cout << "the point is on the edge of the triangle" << std::endl;
+			std::cout << "the point is on the edge of the triangle\t║" << std::endl;
 			return (false);
 		}
-		std::cout << "the point is inside the triangle" << std::endl;
+		std::cout << "the point is inside the triangle\t\t║" << std::endl;
 		return (true);
 	}
-	std::cout << "the point is not inside the triangle" << std::endl;
+	std::cout << "the point is out of the triangle\t\t║" << std::endl;
 	return (false);
 }
