@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: acostin <acostin@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/12 15:38:46 by yhwang            #+#    #+#              #
-#    Updated: 2023/02/13 01:56:29 by acostin          ###   ########.fr        #
+#    Created: 2023/02/13 01:53:13 by yhwang            #+#    #+#              #
+#    Updated: 2023/02/13 01:56:18 by acostin          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = clap_trap
+NAME = scav_trap
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
@@ -18,7 +18,8 @@ RM = rm -f
 SRCS_DIR = ./srcs/
 
 FILES = $(SRCS_DIR)main \
-		$(SRCS_DIR)ClapTrap
+		$(SRCS_DIR)ClapTrap \
+		$(SRCS_DIR)ScavTrap
 
 INCS_DIR = ./incs
 
