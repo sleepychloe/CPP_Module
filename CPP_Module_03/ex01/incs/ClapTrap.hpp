@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ClapTrap.hpp                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:55:07 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/13 01:55:59 by acostin          ###   ########.fr       */
+/*   Updated: 2023/02/13 18:42:25 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ public:
 	void		takeDamage(unsigned int amount);
 	void		beRepaired(unsigned int amount);
 	
-private:
+protected:
 	std::string	_name;
 	int		_hit_points;
 	int		_energy_points;
