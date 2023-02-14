@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:55:01 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/13 19:19:36 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 18:07:47 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,15 +103,15 @@ void	ClapTrap::beRepaired(unsigned int amount)
 {
 	if (_energy_points && _hit_points)
 	{
-		std::cout << "ClapTrap: " << get_name() << " repared " << amount
+		std::cout << "ClapTrap: " << get_name() << " repaired " << amount
 			<< " points of hit points" << std::endl;
 		_hit_points += amount;
 		_energy_points--;
 	}
 	else if (!(_energy_points))
-		std::cout << "ClapTrap: " << get_name() << " cannot be repared"
+		std::cout << "ClapTrap: " << get_name() << " cannot be repaired"
 			<< "(no energy points)" << std::endl;
 	else
-		std::cout << "ClapTrap: " << get_name() << " cannot be repared"
+		std::cout << "ClapTrap: " << get_name() << " cannot be repaired"
 			<< "(no hit points)" << std::endl;
 }

@@ -6,17 +6,27 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/13 01:58:12 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/13 19:53:54 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 20:28:37 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include <sstream>
 #include "../incs/ClapTrap.hpp"
+#include "../incs/ScavTrap.hpp"
 
 # define BLACK			"\x1b[0m"
 # define RED			"\x1b[31m"
 # define CYAN			"\x1b[36m"
 # define YELLOW			"\x1b[33m"
+
+typedef struct s_trap
+{
+	int		n;
+	int		clap;
+	int		scav;
+	int		flag;
+	int		flag_attacked;
+}	t_trap;
 
 int	get_player_number(int *n, std::string *num_player)
 {
@@ -59,18 +69,18 @@ int	get_player_number(int *n, std::string *num_player)
 				ss << *num_player;
 				ss >> *n;
 				break ;
-				
-				
 			}
 		}
 	}
 	return (0);
 }
 
-int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
+int	get_player_name(t_trap trap, ClapTrap *claptrap_player, ScavTrap *scavtrap_player, std::string *player)
 {
-	for (int i = 0; i < n; i++)
+	/* don't be confused that n starts from 1, i starts from 0 */
+	for (int i = 0; i < trap.n; i++)
 	{
+		int temp = i;
 		while (1)
 		{
 			std::cout << CYAN
@@ -82,7 +92,7 @@ int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
 				std::cout << "^D" << std::endl;
 				return (1);
 			}
-			else if (player[i] == "")
+			if (player[i] == "")
 			{
 				std::cout << RED
 					<< "Error: command should not be empty" << BLACK << std::endl;
@@ -95,16 +105,44 @@ int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
 			}
 			else
 			{
-				claptrap_player[i].set_name(player[i]);
+				for (int j = 0; j < temp && trap.clap > 0; j++)
+				{
+					if (claptrap_player[j].get_name() == player[i])
+						player[i] = "";
+				}
+				for (int k = 0; k < temp && trap.scav > 0; k++)
+				{
+					if (scavtrap_player[k].get_name() == player[i])
+						player[i] = "";
+				}
+				if (player[i] == "")
+				{
+					std::cout << RED
+						<< "Error: each player's name should be different"
+						<< BLACK << std::endl;
+					continue ;
+				}
+				if (i % 2 == 0) //i starts from 0, not 1
+					claptrap_player[i / 2].set_name(player[i]);
+				else if (i % 2 == 1)
+					scavtrap_player[i / 2].set_name(player[i]);
 				break ;
 			}
 		}
 	}
-
-	for (int i = 0; i < n; i++)
-		std::cout << YELLOW
-			<< "Player name is "
-			<< claptrap_player[i].get_name() << BLACK << std::endl;
+	for (int i = 0; i < trap.n; i++)
+	{
+		if (i % 2 == 0)
+			std::cout << YELLOW
+				<< "Player name is "
+				<< claptrap_player[i / 2].get_name()
+				<< "(clap trap)" << BLACK << std::endl;
+		else
+			std::cout << YELLOW
+				<< "Player name is "
+				<< scavtrap_player[i / 2].get_name()
+				<< "(scav trap)" << BLACK << std::endl;
+	}
 	return (0);
 }
 
@@ -121,17 +159,46 @@ int	check_int(std::string str)
 	return (0);
 }
 
-void	show_player_status(ClapTrap *claptrap, int n)
+void	show_player_status(t_trap trap, ClapTrap *claptrap, ScavTrap *scavtrap)
 {
-	std::cout << RED << "\tplayer " << claptrap[n].get_name() << std::endl
-		<< YELLOW << "\thit points: " << claptrap[n].get_hit_points() << std::endl
-		<< "\tenergy points: " << claptrap[n].get_energy_points() << BLACK << std::endl;
+	if (trap.flag % 2 == 0)
+		std::cout << RED << "\tplayer " << claptrap[trap.flag / 2].get_name() << std::endl
+			<< YELLOW << "\thit points: " << claptrap[trap.flag / 2].get_hit_points() << std::endl
+			<< "\tenergy points: " << claptrap[trap.flag / 2].get_energy_points() << BLACK << std::endl;
+	else
+		std::cout << RED << "\tplayer " << scavtrap[trap.flag / 2].get_name() << std::endl
+			<< YELLOW << "\thit points: " << scavtrap[trap.flag / 2].get_hit_points() << std::endl
+			<< "\tenergy points: " << scavtrap[trap.flag / 2].get_energy_points() << BLACK << std::endl;
 }
 
-int	attack(int n, ClapTrap *claptrap_player, std::string *player, int flag)
+void	execute_attack(t_trap trap, ClapTrap *claptrap_player, ScavTrap *scavtrap_player)
+{
+	if (trap.flag % 2 == 0 && trap.flag_attacked % 2 == 0) //clap attacks clap
+	{
+		claptrap_player[trap.flag / 2].attack(claptrap_player[trap.flag_attacked / 2].get_name());
+		claptrap_player[trap.flag_attacked / 2].takeDamage(claptrap_player[trap.flag / 2].get_attack_damage());
+	}
+	else if (trap.flag % 2 == 0 && trap.flag_attacked % 2 == 1) //clap attacks scav
+	{
+		claptrap_player[trap.flag / 2].attack(scavtrap_player[trap.flag_attacked / 2].get_name());
+		scavtrap_player[trap.flag_attacked / 2].takeDamage(claptrap_player[trap.flag / 2].get_attack_damage());
+	}
+	else if (trap.flag % 2 == 1 && trap.flag_attacked % 2 == 0) //scav attacks calp
+	{
+		scavtrap_player[trap.flag / 2].attack(claptrap_player[trap.flag_attacked / 2].get_name());
+		claptrap_player[trap.flag_attacked / 2].takeDamage(scavtrap_player[trap.flag / 2].get_attack_damage());
+	}
+	else //scav attakcs scav
+	{
+		scavtrap_player[trap.flag / 2].attack(scavtrap_player[trap.flag_attacked / 2].get_name());
+		scavtrap_player[trap.flag_attacked / 2].takeDamage(scavtrap_player[trap.flag / 2].get_attack_damage());
+	}
+}
+
+int	attack(t_trap trap, ClapTrap *claptrap_player, ScavTrap *scavtrap_player, std::string *player)
 {
 	std::string	attacked_player = "";
-	int		flag_attacked = -1;
+	trap.flag_attacked = -1;
 	while (1)
 	{
 		std::cout << CYAN
@@ -157,63 +224,69 @@ int	attack(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 		}
 		else
 		{
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < trap.n; i++)
 			{
 				if (attacked_player == player[i])
-					flag_attacked = i;
+					trap.flag_attacked = i;
 			}
-			if (flag_attacked == flag)
+			if (trap.flag_attacked == trap.flag)
 			{
 				std::cout << RED
 					<< "Error: you cannot attack yourself" << BLACK << std::endl;
 				continue ;
 			}
-			else if (flag_attacked == -1)
+			else if (trap.flag_attacked == -1)
 			{
 				std::cout << RED
 					<< "Error: invalid command" << BLACK << std::endl;
 				continue ;
 			}
-			claptrap_player[flag].attack(claptrap_player[flag_attacked].get_name());
-			claptrap_player[flag_attacked].takeDamage(claptrap_player[flag].get_attack_damage());
-
-			show_player_status(claptrap_player, flag);
+			execute_attack(trap, claptrap_player, scavtrap_player);
+			show_player_status(trap, claptrap_player, scavtrap_player);
 			break ;
 		}
 	}
 	return (0);
 }
 
-int	repare(ClapTrap *claptrap_player, int flag)
+int	repaire(t_trap trap, ClapTrap *claptrap_player, ScavTrap *scavtrap_player)
 {
 
-	std::string	amount_repare = "";
-	int		repare;
+	std::string	amount_repaire = "";
+	int		repaire;
 	while (1)
 	{
-		std::cout << CYAN
-			<< "Please type a number for being repaired for player "
-			<< claptrap_player[flag].get_name() << std::endl
-			<< "(the number should be more than 0)" << BLACK << std::endl
-			<< "    > ";
-		std::getline(std::cin, amount_repare);
+		if (trap.flag % 2 == 0)
+			std::cout << CYAN
+				<< "Please type a number for being repaired for player "
+				<< claptrap_player[trap.flag / 2].get_name() << std::endl
+				<< "(the number should be more than 0)" << BLACK << std::endl
+				<< "    > ";
+		else
+			std::cout << CYAN
+				<< "Please type a number for being repaired for player "
+				<< scavtrap_player[trap.flag / 2].get_name() << std::endl
+				<< "(the number should be more than 0)" << BLACK << std::endl
+				<< "    > ";
+		
+		std::getline(std::cin, amount_repaire);
 		if (std::cin.eof())
 		{
 			std::cout << "^D" << std::endl;
 			return (1);
 		}
-		else if (amount_repare == "")
+		else if (amount_repaire == "")
 		{
 			std::cout << RED
 				<< "Error: command should not be empty" << BLACK << std::endl;
 			continue ;
 		}
-		else if (amount_repare == "EXIT")
+		else if (amount_repaire == "EXIT")
 		{
 			std::cout << CYAN << "EXIT" << BLACK << std::endl;
 			return (1);
 		}
-		else if (check_int(amount_repare))
+		else if (check_int(amount_repaire))
 		{
 			std::cout << RED
 				<< "Error: invalid command" << BLACK << std::endl;
@@ -222,33 +295,40 @@ int	repare(ClapTrap *claptrap_player, int flag)
 		else
 		{
 			std::stringstream	ss;
-			ss << amount_repare;
-			ss >> repare;
-			if (repare == 0)
+			ss << amount_repaire;
+			ss >> repaire;
+			if (repaire == 0)
 			{
 				std::cout << RED
-					<< "Error: invalid command" << BLACK << std::endl;
+					<< "Error: invalid command:" << BLACK << std::endl;
 				continue ;
 			}
-			claptrap_player[flag].beRepaired(repare);
-
-			show_player_status(claptrap_player, flag);
+			if (trap.flag % 2 == 0)
+				claptrap_player[trap.flag / 2].beRepaired(repaire);
+			else
+				scavtrap_player[trap.flag / 2].beRepaired(repaire);
+			show_player_status(trap, claptrap_player, scavtrap_player);
 			break ;
 		}
 	}
-
 	return (0);
 }
 
-int	select_act(int n, ClapTrap *claptrap_player, std::string *player, int flag)
+int	select_act(t_trap trap, ClapTrap *claptrap_player, ScavTrap *scavtrap_player, std::string *player)
 {
 	std::string	command = "";
 	while (1)
 	{
-		std::cout << CYAN
-			<< "Please type ATTACK or REPARE for player "
-			<< claptrap_player[flag].get_name() << BLACK << std::endl
+		if (trap.flag % 2 == 0)
+			std::cout << CYAN
+			<< "Please type ATTACK or REPAIR for player "
+			<< claptrap_player[trap.flag / 2].get_name() << BLACK << std::endl
 			<< "    > ";
+		else
+			std::cout << CYAN
+				<< "Please type ATTACK or REPAIR or GATE_KEEPER_MODE for player "
+				<< scavtrap_player[trap.flag / 2].get_name() << BLACK << std::endl
+				<< "    > ";
 		std::getline(std::cin, command);
 		if (std::cin.eof())
 		{
@@ -263,63 +343,133 @@ int	select_act(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 		}
 		else if (command == "ATTACK")
 		{
-			show_player_status(claptrap_player, flag);
-
-			/* attack: normal operation */
-			if (claptrap_player[flag].get_energy_points() > 0
-				&& claptrap_player[flag].get_hit_points() > 0)
+			show_player_status(trap, claptrap_player, scavtrap_player);
+			
+			if (trap.flag % 2 == 0) //craptrap
 			{
-				if (attack(n, claptrap_player, player, flag))
-					return (1);
+				/* attack: normal operation */
+				if (claptrap_player[trap.flag / 2].get_energy_points() > 0
+					&& claptrap_player[trap.flag / 2].get_hit_points() > 0)
+				{
+					if (attack(trap, claptrap_player, scavtrap_player, player))
+						return (1);
+				}
+				/* attack: error: no energy points */
+				else if (claptrap_player[trap.flag / 2].get_energy_points() <= 0)
+				{
+					std::cout << RED
+						<< claptrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+						break ;
+				}
+				/* attack: error: no hit points */
+				else if (claptrap_player[trap.flag / 2].get_hit_points() <= 0)
+				{
+					std::cout << RED
+						<< claptrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+						break ;
+				}
+				break ;
 			}
-			/* attack: error: no energy point */
-			else if (claptrap_player[flag].get_energy_points() == 0)
+			else //scavtrap
 			{
-				std::cout << CYAN
-					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
-					<< "he cannot take any action" << BLACK << std::endl;
-					break ;
+				/* attack: normal operation */
+				if (scavtrap_player[trap.flag / 2].get_energy_points() > 0
+					&& scavtrap_player[trap.flag / 2].get_hit_points() > 0)
+				{
+					if (attack(trap, claptrap_player, scavtrap_player, player))
+						return (1);
+				}
+				/* attack: error: no energy points */
+				else if (scavtrap_player[trap.flag / 2].get_energy_points() <= 0)
+				{
+					std::cout << RED
+						<< scavtrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+						break ;
+				}
+				/* attack: error: no hit points */
+				else if (scavtrap_player[trap.flag / 2].get_hit_points() <= 0)
+				{
+					std::cout << RED
+						<< scavtrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+						break ;
+				}
+				break ;
 			}
-			/* attack: error: no hit point */
-			else if (claptrap_player[flag].get_hit_points() == 0)
-			{
-				std::cout << CYAN
-					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
-					<< "he cannot take any action" << BLACK << std::endl;
-					break ;
-			}
-			break ;
 		}
-		else if (command == "REPARE")
+		else if (command == "REPAIR")
 		{
-			show_player_status(claptrap_player, flag);
-			/* repare: normal operation */
-			if (claptrap_player[flag].get_energy_points() > 0
-				&& claptrap_player[flag].get_hit_points() > 0)
+			show_player_status(trap, claptrap_player, scavtrap_player);
+			if (trap.flag % 2 == 0) //craptrap
 			{
-				if (repare(claptrap_player, flag))
-					return (1);
-			}
-			/* repare: error: no energy point */
-			else if (claptrap_player[flag].get_energy_points() == 0)
-			{
-				std::cout << CYAN
-					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
-					<< "he cannot take any action" << BLACK << std::endl;
+				/* repaire: normal operation */
+				if (claptrap_player[trap.flag / 2].get_energy_points() > 0
+					&& claptrap_player[trap.flag / 2].get_hit_points() > 0)
+				{
+					if (repaire(trap, claptrap_player, scavtrap_player))
+						return (1);
+				}
+				/* repaire: error: no energy points */
+				else if (claptrap_player[trap.flag / 2].get_energy_points() <= 0)
+				{
+					std::cout << RED
+						<< claptrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+					break ;
+				}
+				/* repaire: error: no hit points */
+				else if (claptrap_player[trap.flag / 2].get_hit_points() <= 0)
+				{
+					std::cout << RED
+						<< claptrap_player[trap.flag / 2].get_name()
+						<< " does not have any hit points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+					break ;
+				}
 				break ;
 			}
-			/* repare: error: no hit point */
-			else if (claptrap_player[flag].get_hit_points() == 0)
+			else //scavtrap
 			{
-				std::cout << CYAN
-					<< claptrap_player[flag].get_name()
-					<< " does not have any hit point" << std::endl
-					<< "he cannot take any action" << BLACK << std::endl;
+				/* repaire: normal operation */
+				if (scavtrap_player[trap.flag / 2].get_energy_points() > 0
+					&& scavtrap_player[trap.flag / 2].get_hit_points() > 0)
+				{
+					if (repaire(trap, claptrap_player, scavtrap_player))
+						return (1);
+				}
+				/* repaire: error: no energy points */
+				else if (scavtrap_player[trap.flag / 2].get_energy_points() <= 0)
+				{
+					std::cout << RED
+						<< scavtrap_player[trap.flag / 2].get_name()
+						<< " does not have any energy points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+					break ;
+				}
+				/* repaire: error: no hit points */
+				else if (scavtrap_player[trap.flag / 2].get_hit_points() <= 0)
+				{
+					std::cout << RED
+						<< scavtrap_player[trap.flag / 2].get_name()
+						<< " does not have any hit points" << std::endl
+						<< "he cannot take any action" << BLACK << std::endl;
+					break ;
+				}
 				break ;
 			}
+			
+		}
+		else if (command == "GATE_KEEPER_MODE" && trap.flag % 2 == 1)
+		{
+			scavtrap_player[trap.flag / 2].guardGate();
 			break ;
 		}
 		else if (command == "EXIT")
@@ -337,8 +487,6 @@ int	select_act(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 	return (0);
 }
 
-
-
 int	main(int argc, char **argv)
 {
 	(void)argv;
@@ -350,35 +498,42 @@ int	main(int argc, char **argv)
 		return (1);
 	}
 
-	int		 n = 0;
+	t_trap	trap;
+
+	int		n = 0;
 	std::string	num_player = "";
 	if (get_player_number(&n, &num_player))
 		return (0);
-
+	
 	/*
 	n % 2 == 1: claptrap player
 	n % 2 == 0: scavtrap player
 	*/
-	if (n % 2 == 0)
+	trap.n = n;
+	if (trap.n % 2 == 0)
 	{
-		ClapTrap	claptrap_player[n / 2];
-		ScavTrap	scavtrap_player[n / 2];
+		trap.clap = trap.n / 2;
+		trap.scav = trap.n / 2;
 	}
 	else
 	{
-		ClapTrap	claptrap_player[int(n / 2) + 1];
-		ScavTrap	scavtrap_player[int(n / 2)];
+		trap.clap = trap.n / 2 + 1;
+		trap.scav = trap.n / 2;
 	}
 
-	std::string	player[n];
-	if (get_player_name(n, claptrap_player, scavtrap_player, player))
+	ClapTrap	claptrap_player[trap.clap];
+	ScavTrap	scavtrap_player[trap.scav];
+	std::string	player[trap.n];
+	
+
+	if (get_player_name(trap, claptrap_player, scavtrap_player, player))
 		return (0);
 
 	while (1)
 	{
 		/* select player */
 		std::string selected_player = "";
-		int flag = -1;
+		trap.flag = -1;
 		std::cout << CYAN
 			<< "Please type the name of player that you want to select"
 			<< BLACK << std::endl
@@ -402,12 +557,12 @@ int	main(int argc, char **argv)
 		}
 		else
 		{
-			for (int i = 0; i < n; i++)
+			for (int i = 0; i < trap.n; i++)
 			{
 				if (selected_player == player[i])
-					flag = i;
+					trap.flag = i;
 			}
-			if (flag == -1)
+			if (trap.flag == -1)
 			{
 				std::cout << RED
 					<< "Error: invalid command" << BLACK << std::endl;
@@ -416,7 +571,7 @@ int	main(int argc, char **argv)
 			else
 			{
 				/* select acting */
-				if (select_act(n, claptrap_player, player, flag))
+				if (select_act(trap, claptrap_player, scavtrap_player, player))
 					return (0);
 			}
 		}

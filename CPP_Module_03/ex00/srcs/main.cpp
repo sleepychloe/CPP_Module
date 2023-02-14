@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/12 15:39:55 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/13 18:39:38 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 18:06:35 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,7 @@ int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
 {
 	for (int i = 0; i < n; i++)
 	{
+		int temp = i;
 		while (1)
 		{
 			std::cout << CYAN
@@ -82,7 +83,7 @@ int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
 				std::cout << "^D" << std::endl;
 				return (1);
 			}
-			else if (player[i] == "")
+			if (player[i] == "")
 			{
 				std::cout << RED
 					<< "Error: command should not be empty" << BLACK << std::endl;
@@ -95,6 +96,18 @@ int	get_player_name(int n, ClapTrap *claptrap_player, std::string *player)
 			}
 			else
 			{
+				for (int j = 0; j < temp && n > 0; j++)
+				{
+					if (claptrap_player[j].get_name() == player[i])
+						player[i] = "";
+				}
+				if (player[i] == "")
+				{
+					std::cout << RED
+						<< "Error: each player's name should be different"
+						<< BLACK << std::endl;
+					continue ;
+				}
 				claptrap_player[i].set_name(player[i]);
 				break ;
 			}
@@ -184,11 +197,11 @@ int	attack(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 	return (0);
 }
 
-int	repare(ClapTrap *claptrap_player, int flag)
+int	repair(ClapTrap *claptrap_player, int flag)
 {
 
-	std::string	amount_repare = "";
-	int		repare;
+	std::string	amount_repair = "";
+	int		repair;
 	while (1)
 	{
 		std::cout << CYAN
@@ -196,24 +209,24 @@ int	repare(ClapTrap *claptrap_player, int flag)
 			<< claptrap_player[flag].get_name() << std::endl
 			<< "(the number should be more than 0)" << BLACK << std::endl
 			<< "    > ";
-		std::getline(std::cin, amount_repare);
+		std::getline(std::cin, amount_repair);
 		if (std::cin.eof())
 		{
 			std::cout << "^D" << std::endl;
 			return (1);
 		}
-		else if (amount_repare == "")
+		else if (amount_repair == "")
 		{
 			std::cout << RED
 				<< "Error: command should not be empty" << BLACK << std::endl;
 			continue ;
 		}
-		else if (amount_repare == "EXIT")
+		else if (amount_repair == "EXIT")
 		{
 			std::cout << CYAN << "EXIT" << BLACK << std::endl;
 			return (1);
 		}
-		else if (check_int(amount_repare))
+		else if (check_int(amount_repair))
 		{
 			std::cout << RED
 				<< "Error: invalid command" << BLACK << std::endl;
@@ -222,15 +235,15 @@ int	repare(ClapTrap *claptrap_player, int flag)
 		else
 		{
 			std::stringstream	ss;
-			ss << amount_repare;
-			ss >> repare;
-			if (repare == 0)
+			ss << amount_repair;
+			ss >> repair;
+			if (repair == 0)
 			{
 				std::cout << RED
 					<< "Error: invalid command" << BLACK << std::endl;
 				continue ;
 			}
-			claptrap_player[flag].beRepaired(repare);
+			claptrap_player[flag].beRepaired(repair);
 
 			show_player_status(claptrap_player, flag);
 			break ;
@@ -246,7 +259,7 @@ int	select_act(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 	while (1)
 	{
 		std::cout << CYAN
-			<< "Please type ATTACK or REPARE for player "
+			<< "Please type ATTACK or REPAIR for player "
 			<< claptrap_player[flag].get_name() << BLACK << std::endl
 			<< "    > ";
 		std::getline(std::cin, command);
@@ -272,51 +285,51 @@ int	select_act(int n, ClapTrap *claptrap_player, std::string *player, int flag)
 				if (attack(n, claptrap_player, player, flag))
 					return (1);
 			}
-			/* attack: error: no energy point */
-			else if (claptrap_player[flag].get_energy_points() == 0)
+			/* attack: error: no energy points */
+			else if (claptrap_player[flag].get_energy_points() <= 0)
 			{
-				std::cout << CYAN
+				std::cout << RED
 					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
+					<< " does not have any energy points" << std::endl
 					<< "he cannot take any action" << BLACK << std::endl;
 					break ;
 			}
-			/* attack: error: no hit point */
-			else if (claptrap_player[flag].get_hit_points() == 0)
+			/* attack: error: no hit points */
+			else if (claptrap_player[flag].get_hit_points() <= 0)
 			{
-				std::cout << CYAN
+				std::cout << RED
 					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
+					<< " does not have any energy points" << std::endl
 					<< "he cannot take any action" << BLACK << std::endl;
 					break ;
 			}
 			break ;
 		}
-		else if (command == "REPARE")
+		else if (command == "REPAIR")
 		{
 			show_player_status(claptrap_player, flag);
-			/* repare: normal operation */
+			/* repair: normal operation */
 			if (claptrap_player[flag].get_energy_points() > 0
 				&& claptrap_player[flag].get_hit_points() > 0)
 			{
-				if (repare(claptrap_player, flag))
+				if (repair(claptrap_player, flag))
 					return (1);
 			}
-			/* repare: error: no energy point */
-			else if (claptrap_player[flag].get_energy_points() == 0)
+			/* repair: error: no energy points */
+			else if (claptrap_player[flag].get_energy_points() <= 0)
 			{
-				std::cout << CYAN
+				std::cout << RED
 					<< claptrap_player[flag].get_name()
-					<< " does not have any energy point" << std::endl
+					<< " does not have any energy points" << std::endl
 					<< "he cannot take any action" << BLACK << std::endl;
 				break ;
 			}
-			/* repare: error: no hit point */
-			else if (claptrap_player[flag].get_hit_points() == 0)
+			/* repair: error: no hit points */
+			else if (claptrap_player[flag].get_hit_points() <= 0)
 			{
-				std::cout << CYAN
+				std::cout << RED
 					<< claptrap_player[flag].get_name()
-					<< " does not have any hit point" << std::endl
+					<< " does not have any hit points" << std::endl
 					<< "he cannot take any action" << BLACK << std::endl;
 				break ;
 			}
