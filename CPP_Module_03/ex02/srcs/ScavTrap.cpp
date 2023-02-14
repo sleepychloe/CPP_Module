@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:27:33 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/14 20:11:22 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 21:34:44 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ void	ScavTrap::attack(const std::string &target)
 		_energy_points -= 5;
 	}
 	else if (!(_energy_points >= 5))
-		std::cout << "ScavTrap: " << get_name() << " cannot attack" << target
+		std::cout << "ScavTrap: " << get_name() << " cannot attack " << target
 			<< "(not enough energy points)" << std::endl;
 	else
-		std::cout << "ScavTrap: " << get_name() << " cannot attack" << target
+		std::cout << "ScavTrap: " << get_name() << " cannot attack " << target
 			<< "(not enough hit points)" << std::endl;
 }
 

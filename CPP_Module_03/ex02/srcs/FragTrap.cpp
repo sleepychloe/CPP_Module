@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:27:41 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/14 20:53:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 21:34:29 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,10 +68,10 @@ void	FragTrap::attack(const std::string &target)
 		_energy_points -= 10;
 	}
 	else if (!(_energy_points >= 10))
-		std::cout << "FragTrap: " << get_name() << " cannot attack" << target
+		std::cout << "FragTrap: " << get_name() << " cannot attack " << target
 			<< "(not enough energy points)" << std::endl;
 	else
-		std::cout << "FragTrap: " << get_name() << " cannot attack" << target
+		std::cout << "FragTrap: " << get_name() << " cannot attack " << target
 			<< "(not enough hit points)" << std::endl;
 }
 
