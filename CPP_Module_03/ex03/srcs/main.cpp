@@ -117,7 +117,7 @@ int	get_player_name(t_trap *trap)
 				if (trap->scavtrap_player->get_name() == trap->player[i])
 					trap->player[i] = "";
 				if (trap->fragtrap_player->get_name() == trap->player[i])
-					trap->player[i] == "";
+					trap->player[i] = "";
 				if (trap->player[i] == "")
 				{
 					std::cout << RED
