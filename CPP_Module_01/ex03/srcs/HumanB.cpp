@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/25 10:58:45 by yhwang            #+#    #+#             */
-/*   Updated: 2023/01/30 10:00:52 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 03:33:16 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,8 +37,12 @@ std::string	HumanB::get_weapon_type(void)
 
 void	HumanB::attack(void)
 {
-	std::cout << get_human_name() << " attacks with their "
-		<< get_weapon_type() << std::endl;
+	if (_weapon)
+		std::cout << get_human_name() << " attacks with their "
+			<< get_weapon_type() << std::endl;
+	else
+		std::cout << "you don't have wepon. "
+			<< "you can't attack without weapon" << std::endl;
 }
 
 HumanB::~HumanB()
