@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:26:14 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/14 23:45:14 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 15:22:56 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,27 +80,35 @@ int	get_player_name(t_trap *trap)
 						<< BLACK << std::endl;
 					continue ;
 				}
+				if (i == 0)
+				{
+					trap->claptrap_player->set_name(trap->player[i]);
+					std::cout << YELLOW
+						<< "Player name is "
+						<< trap->claptrap_player->get_name()
+						<< "(clap trap)" << BLACK << std::endl;
+				}
+				else if (i == 1)
+				{
+					trap->scavtrap_player->set_name(trap->player[i]);
+					std::cout << YELLOW
+						<< "Player name is "
+						<< trap->scavtrap_player->get_name()
+						<< "(scav trap)" << BLACK << std::endl;
+				}
+				else
+				{
+					trap->fragtrap_player->set_name(trap->player[i]);
+					std::cout << YELLOW
+						<< "Player name is "
+						<< trap->fragtrap_player->get_name()
+						<< "(frag trap)" << BLACK << std::endl;
+				}
+
 				break ;
 			}
 		}
 	}
-	trap->claptrap_player->set_name(trap->player[0]);
-	std::cout << YELLOW
-		<< "Player name is "
-		<< trap->claptrap_player->get_name()
-		<< "(clap trap)" << BLACK << std::endl;
-
-	trap->scavtrap_player->set_name(trap->player[1]);
-	std::cout << YELLOW
-		<< "Player name is "
-		<< trap->scavtrap_player->get_name()
-		<< "(scav trap)" << BLACK << std::endl;
-
-	trap->fragtrap_player->set_name(trap->player[2]);
-	std::cout << YELLOW
-		<< "Player name is "
-		<< trap->fragtrap_player->get_name()
-		<< "(frag trap)" << BLACK << std::endl;
 	return (0);
 }
 
