@@ -6,12 +6,12 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/14 18:25:26 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/14 18:25:46 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/14 22:57:34 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef SCAVTRAP_HPP
-# define SCAVTRAP_HPP
+#ifndef SCAV_TRAP_HPP
+# define SCAV_TRAP_HPP
 
 #include <iostream>
 #include <string>

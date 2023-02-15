@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/14 18:25:20 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/14 21:47:42 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/14 21:42:12 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/14 22:56:54 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 #include <string>
 #include "./ClapTrap.hpp"
 
-class	FragTrap: public ClapTrap
+class	FragTrap: virtual public ClapTrap
 {
 public:
 	FragTrap();
