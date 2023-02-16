@@ -1,38 +1,23 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 05:33:50 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 20:35:53 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/15 23:54:58 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/16 05:11:05 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#include "../incs/Animal.hpp"
+#include "../incs/Dog.hpp"
+#include "../incs/Cat.hpp"
 
-#include <iostream>
-#include <string>
+#include "../incs/Brain.hpp"
 
-# define BLACK			"\x1b[0m"
-# define RED			"\x1b[31m"
-
-class	Animal
+int	main(void)
 {
-public:
-	Animal();
-	Animal(const Animal& animal);
-	Animal& operator=(const Animal& animal);
-	virtual ~Animal();
-
-	void		setType(std::string type);
-	std::string	getType(void) const;
-	virtual void		makeSound(void) const;
-
-protected:
-	std::string	_type;
-};
-
-#endif
+	Brain brain();
+	return (0);
+}

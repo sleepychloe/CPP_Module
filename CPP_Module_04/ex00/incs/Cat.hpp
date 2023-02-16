@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 05:35:29 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 06:19:53 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 20:10:40 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Cat& operator=(const Cat& cat);
 	~Cat();
 
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 };
 
 #endif

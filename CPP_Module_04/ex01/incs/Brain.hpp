@@ -1,38 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Brain.hpp                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 05:33:50 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 20:35:53 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/15 23:56:35 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/16 05:10:35 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef BRAIN_HPP
+# define BRAIN_HPP
 
 #include <iostream>
 #include <string>
 
-# define BLACK			"\x1b[0m"
-# define RED			"\x1b[31m"
-
-class	Animal
+class	Brain
 {
 public:
-	Animal();
-	Animal(const Animal& animal);
-	Animal& operator=(const Animal& animal);
-	virtual ~Animal();
+	Brain();
+	Brain(const Brain& brain);
+	Brain& operator=(const Brain &brain);
+	~Brain();
 
-	void		setType(std::string type);
-	std::string	getType(void) const;
-	virtual void		makeSound(void) const;
+private:
+	std::string	_ideas[100];
 
-protected:
-	std::string	_type;
+	void		_set_ideas(std::string ideas);
 };
 
 #endif

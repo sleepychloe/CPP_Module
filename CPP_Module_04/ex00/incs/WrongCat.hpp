@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:11:27 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 07:11:38 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 20:13:07 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,15 +15,15 @@
 
 #include <iostream>
 #include <string>
-#include "./Animal.hpp"
+#include "./WrongAnimal.hpp"
 
-class	Cat: public Animal
+class	WrongCat: public WrongAnimal
 {
 public:
-	Cat();
-	Cat(const Cat& cat);
-	Cat& operator=(const Cat& cat);
-	~Cat();
+	WrongCat();
+	WrongCat(const WrongCat& wrongcat);
+	WrongCat& operator=(const WrongCat& wrongcat);
+	~WrongCat();
 
 	void	makeSound(void) const;
 };

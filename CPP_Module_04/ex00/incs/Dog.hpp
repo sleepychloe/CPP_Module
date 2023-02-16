@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 05:35:22 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 06:19:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 20:10:37 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ public:
 	Dog& operator=(const Dog& dog);
 	~Dog();
 
-	void	makeSound(void) const;
+	virtual void	makeSound(void) const;
 };
 
 #endif

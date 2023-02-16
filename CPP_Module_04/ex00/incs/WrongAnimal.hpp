@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 07:10:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 07:11:14 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/15 20:35:49 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,13 +16,16 @@
 #include <iostream>
 #include <string>
 
-class	Animal
+# define BLACK			"\x1b[0m"
+# define RED			"\x1b[31m"
+
+class	WrongAnimal
 {
 public:
-	Animal();
-	Animal(const Animal& animal);
-	Animal& operator=(const Animal& animal);
-	~Animal();
+	WrongAnimal();
+	WrongAnimal(const WrongAnimal& wronganimal);
+	WrongAnimal& operator=(const WrongAnimal& wronganimal);
+	~WrongAnimal();
 
 	void		setType(std::string type);
 	std::string	getType(void) const;

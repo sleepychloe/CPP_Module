@@ -1,38 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Animal.hpp                                         :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 05:33:50 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/15 20:35:53 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/15 23:52:42 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/16 00:02:19 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef ANIMAL_HPP
-# define ANIMAL_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
 #include <iostream>
 #include <string>
+#include "./Animal.hpp"
+#include "./Brain.hpp"
 
-# define BLACK			"\x1b[0m"
-# define RED			"\x1b[31m"
-
-class	Animal
+class	Cat: public Animal
 {
 public:
-	Animal();
-	Animal(const Animal& animal);
-	Animal& operator=(const Animal& animal);
-	virtual ~Animal();
+	Cat();
+	Cat(const Cat& cat);
+	Cat& operator=(const Cat& cat);
+	~Cat();
 
-	void		setType(std::string type);
-	std::string	getType(void) const;
-	virtual void		makeSound(void) const;
+	virtual void	makeSound(void) const;
 
-protected:
-	std::string	_type;
+private:
+	Brain*		_brain;
+
 };
 
 #endif
