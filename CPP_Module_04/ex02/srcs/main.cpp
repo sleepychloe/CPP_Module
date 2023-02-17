@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/16 23:54:46 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:38:01 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:43:52 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,15 +173,15 @@ int	main(int argc, char **argv)
 			std::cout << YELLOW << "test 1: dog class:" << BLACK << std::endl;
 			Dog	dog_1;
 			Dog	dog_2 = dog_1;
-			std::cout << "╔═════╦════════════════╦════════════════╗" << std::endl;
-			std::cout << "║ idx ║ brain: dog_1   ║ brain: dog_2   ║" << std::endl;
-			std::cout << "╠═════╬════════════════╬════════════════╣" << std::endl;
+			std::cout << "╔═════╦═════════════════╦═══════════════╗" << std::endl;
+			std::cout << "║ idx ║ brain: dog_1\t║ brain: dog_2\t║" << std::endl;
+			std::cout << "╠═════╬═════════════════╬═══════════════╣" << std::endl;
 			for (int i = 0; i < 100; i++)
 				std::cout << "║ " << std::setw(3) << i + 1
 					<< " ║ " << CYAN << dog_1.get_brain() + i << BLACK
-					<< " ║ " << YELLOW << dog_2.get_brain() + i<< BLACK
-					<< " ║" << std::endl;
-			std::cout << "╚═════╩════════════════╩════════════════╝" << std::endl;	
+					<< "\t║ " << YELLOW << dog_2.get_brain() + i<< BLACK
+					<< "\t║" << std::endl;
+			std::cout << "╚═════╩═════════════════╩═══════════════╝" << std::endl;	
 		}
 		std::cout << std::endl;
 		{
@@ -189,15 +189,15 @@ int	main(int argc, char **argv)
 			std::cout << YELLOW << "test 2: cat class:" << BLACK << std::endl;
 			Cat	cat_1;
 			Cat	cat_2 = cat_1;
-			std::cout << "╔═════╦════════════════╦════════════════╗" << std::endl;
-			std::cout << "║ idx ║ brain: cat_1   ║ brain: cat_2   ║" << std::endl;
-			std::cout << "╠═════╬════════════════╬════════════════╣" << std::endl;
+			std::cout << "╔═════╦═════════════════╦═══════════════╗" << std::endl;
+			std::cout << "║ idx ║ brain: cat_1\t║ brain: cat_2\t║" << std::endl;
+			std::cout << "╠═════╬═════════════════╬═══════════════╣" << std::endl;
 			for (int i = 0; i < 100; i++)
 				std::cout << "║ " << std::setw(3) << i + 1
 					<< " ║ " << CYAN << cat_1.get_brain() + i << BLACK
-					<< " ║ " << YELLOW << cat_2.get_brain() + i<< BLACK
-					<< " ║" << std::endl;
-			std::cout << "╚═════╩════════════════╩════════════════╝" << std::endl;
+					<< "\t║ " << YELLOW << cat_2.get_brain() + i<< BLACK
+					<< "\t║" << std::endl;
+			std::cout << "╚═════╩═════════════════╩═══════════════╝" << std::endl;
 		}
 	}
 	return (0);

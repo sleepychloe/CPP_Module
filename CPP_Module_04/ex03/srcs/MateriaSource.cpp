@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 04:46:09 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 05:12:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:20:14 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	MateriaSource::learnMateria(AMateria* m)
 		if (_materia[i] == NULL)
 		{
 			_materia[i] = m;
+			std::cout << "leared " << _materia[i]->getType() << std::endl;
 			return ;
 		}
 	}

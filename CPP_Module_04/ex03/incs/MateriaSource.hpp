@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 04:45:54 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 05:06:02 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:32:46 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ public:
 	MateriaSource& operator=(const MateriaSource& materiasource);
 	~MateriaSource();
 
-	void		learnMateria(AMateria* m);
-	AMateria*	createMateria(std::string const& type);
+	virtual void		learnMateria(AMateria* m);
+	virtual AMateria*	createMateria(std::string const& type);
 
 private:
 	AMateria*	_materia[4];

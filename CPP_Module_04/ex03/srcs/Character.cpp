@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 03:29:55 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 05:24:44 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:29:26 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,8 @@ void	Character::equip(AMateria* m)
 		if (_materia[i] == NULL)
 		{
 			_materia[i] = m;
-			std::cout << "materia equipped" << std::endl;
+			std::cout << "materia " << _materia[i]->getType()
+				<< " equipped" << std::endl;
 			return ;
 		}
 	}
@@ -70,5 +71,6 @@ void	Character::unequip(int idx)
 
 void	Character::use(int idx, ICharacter& target)
 {
-	_materia[idx]->use(target);
+	if (idx < 3)
+		_materia[idx]->use(target);
 }

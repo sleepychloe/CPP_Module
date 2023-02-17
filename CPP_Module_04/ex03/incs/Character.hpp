@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/17 04:02:57 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 05:24:47 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/17 21:40:56 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ public:
 	Character& operator=(const Character& character);
 	~Character();
 
-	std::string const&	getName() const;
-	void			equip(AMateria* m);
-	void			unequip(int idx);
-	void			use(int idx, ICharacter& target);
+	virtual std::string const&	getName() const;
+	virtual void			equip(AMateria* m);
+	virtual void			unequip(int idx);
+	virtual void			use(int idx, ICharacter& target);
 
 private:
 	AMateria	*_materia[4];
