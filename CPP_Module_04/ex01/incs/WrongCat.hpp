@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:52:35 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/16 00:50:41 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:53:26 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ public:
 	~WrongCat();
 
 	void	makeSound(void) const;
-
 };
 
 #endif

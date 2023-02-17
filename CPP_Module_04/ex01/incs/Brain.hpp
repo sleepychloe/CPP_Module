@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:56:35 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/16 05:10:35 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:30:56 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,8 +26,6 @@ public:
 
 private:
 	std::string	_ideas[100];
-
-	void		_set_ideas(std::string ideas);
 };
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/15 23:52:42 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/16 00:02:19 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/16 23:53:14 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,10 +27,10 @@ public:
 	~Cat();
 
 	virtual void	makeSound(void) const;
+	Brain*		get_brain(void);
 
 private:
 	Brain*		_brain;
-
 };
 
 #endif

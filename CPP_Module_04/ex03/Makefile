@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/15 23:51:40 by yhwang            #+#    #+#              #
-#    Updated: 2023/02/16 23:48:23 by yhwang           ###   ########.fr        #
+#    Created: 2023/02/17 00:38:50 by yhwang            #+#    #+#              #
+#    Updated: 2023/02/17 05:44:32 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = animal
+NAME = interface
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
@@ -18,12 +18,11 @@ RM = rm -f
 SRCS_DIR = ./srcs/
 
 FILES = $(SRCS_DIR)main \
-		$(SRCS_DIR)Animal \
-		$(SRCS_DIR)Dog \
-		$(SRCS_DIR)Cat \
-		$(SRCS_DIR)WrongAnimal \
-		$(SRCS_DIR)WrongCat \
-		$(SRCS_DIR)Brain
+		$(SRCS_DIR)AMateria \
+		$(SRCS_DIR)Ice \
+		$(SRCS_DIR)Cure \
+		$(SRCS_DIR)Character \
+		$(SRCS_DIR)MateriaSource
 
 INCS_DIR = ./incs
 

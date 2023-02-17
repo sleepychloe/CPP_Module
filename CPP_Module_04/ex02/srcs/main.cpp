@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 23:54:58 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:31:42 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/16 23:54:46 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/17 00:38:01 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,108 @@ int	main(int argc, char **argv)
 		std::cout << "Argument error" << std::endl;
 		return (1);	
 	}
+
+	{
+		/* ex00: test: Animal */
+		{
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+			std::cout << CYAN <<"[ ANIMAL TEST 1] " << BLACK << std::endl;
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+
+			/* it doesn't make sense that make animal object */
+			// const Animal* animal = new Animal();
+			// std::cout << YELLOW << "TYPE: " << animal->getType() << BLACK << ": ";
+			// std::cout << RED;
+			// animal->makeSound();
+			// std::cout << BLACK;
+			// delete animal;
+
+			// std::cout << std::endl;
+
+			/* dog sound will be printed */
+			const Animal* dog = new Dog();
+			std::cout << YELLOW << "TYPE: " << dog->getType() << BLACK << ": ";
+			std::cout << RED;
+			dog->makeSound();
+			std::cout << BLACK;
+			delete dog;
+
+			std::cout << std::endl;
+
+			/* cat sound will be printed */
+			const Animal* cat = new Cat();
+			std::cout << YELLOW << "TYPE: " << cat->getType() << BLACK << ": ";
+			std::cout << RED;
+			cat->makeSound();
+			std::cout << BLACK;
+			delete cat;
+
+			std::cout << std::endl;
+		}
+
+		{
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+			std::cout << CYAN <<"[ ANIMAL TEST 2] " << BLACK << std::endl;
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+
+			/* it doesn't make sense that make animal object */
+			// Animal a;
+			// std::cout << YELLOW << "TYPE: " << a.getType() << BLACK << ": ";
+			// std::cout << RED;
+			// a.makeSound();
+			// std::cout << BLACK;
+
+			// std::cout << std::endl;
+
+			/* dog sound will be printed */
+			Dog d;
+			std::cout << YELLOW << "TYPE: " << d.getType() << BLACK << ": ";
+			std::cout << RED;
+			d.makeSound();
+			std::cout << BLACK;
+
+			std::cout << std::endl;
+
+			/* cat sound will be printed */
+			Cat c;
+			std::cout << YELLOW << "TYPE: " << c.getType() << BLACK << ": ";
+			std::cout << RED;
+			c.makeSound();
+			std::cout << BLACK;
+
+			std::cout << std::endl;
+		}
+
+		{
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+			std::cout << CYAN <<"[ ANIMAL TEST 3] " << BLACK << std::endl;
+			std::cout << "══════════════════════════════════════════════════════════" << std::endl;
+			
+			/* dog sound will be printed */
+			Dog d;
+			Dog *test_dog = &d;
+			std::cout << YELLOW << "TYPE: " << test_dog->getType() << BLACK << ": ";
+			std::cout << RED;
+			test_dog->makeSound();
+			std::cout << BLACK;
+
+			std::cout << std::endl;
+			
+			/* cat sound will be printed */
+			Cat c;
+			Cat *test_cat = &c;
+			std::cout << YELLOW << "TYPE: " << test_cat->getType() << BLACK << ": ";
+			std::cout << RED;
+			test_cat->makeSound();
+			std::cout << BLACK;
+
+			std::cout << std::endl;
+		}
+
+	std::cout << std::endl;
+	}
 	
-	/* test 1*/
+	/* ex01: test 1*/
 	{
 		std::cout << RED << "[ EX01 TEST 1 ]" << BLACK << std::endl;
 		int	n = 10;
@@ -64,7 +164,7 @@ int	main(int argc, char **argv)
 	}
 	std::cout << std::endl;
 
-	/* test 2 */
+	/* ex01: test 2 */
 	{
 		std::cout << RED << "[ EX01 TEST 2 ]" << BLACK << std::endl;
 		

@@ -1,30 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cat.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 23:52:40 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:18:23 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/16 23:51:48 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/16 23:52:43 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CAT_HPP
+# define CAT_HPP
 
 #include <iostream>
 #include <string>
 #include "./Animal.hpp"
 #include "./Brain.hpp"
 
-class	Dog: public Animal
+class	Cat: public Animal
 {
 public:
-	Dog();
-	Dog(const Dog& dog);
-	Dog& operator=(const Dog& dog);
-	~Dog();
+	Cat();
+	Cat(const Cat& cat);
+	Cat& operator=(const Cat& cat);
+	~Cat();
 
 	virtual void	makeSound(void) const;
 	Brain*		get_brain(void);

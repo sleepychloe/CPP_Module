@@ -1,36 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Dog.hpp                                            :+:      :+:    :+:   */
+/*   Cure.hpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 23:52:40 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/16 23:18:23 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/17 03:20:15 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/17 03:31:48 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef DOG_HPP
-# define DOG_HPP
+#ifndef CURE_HPP
+# define CURE_HPP
 
-#include <iostream>
-#include <string>
-#include "./Animal.hpp"
-#include "./Brain.hpp"
+#include "./AMateria.hpp"
+#include "./ICharacter.hpp"
 
-class	Dog: public Animal
+class	Cure: public AMateria
 {
 public:
-	Dog();
-	Dog(const Dog& dog);
-	Dog& operator=(const Dog& dog);
-	~Dog();
-
-	virtual void	makeSound(void) const;
-	Brain*		get_brain(void);
-
-private:
-	Brain*		_brain;
+	Cure();
+	Cure(const Cure& cure);
+	Cure& operator=(const Cure& cure);
+	~Cure();
+	
+	virtual AMateria*	clone() const;
+	virtual void		use(ICharacter& target);
 };
 
 #endif

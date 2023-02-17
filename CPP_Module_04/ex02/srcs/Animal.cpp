@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/15 23:55:05 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/17 00:29:35 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/16 23:54:01 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/17 00:30:59 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ std::string	Animal::getType(void) const
 	return (_type);
 }
 
-void	Animal::makeSound(void) const
-{
-	std::cout << "Animal: i am a just animal" << std::endl;
-}
+// void	Animal::makeSound(void) const
+// {
+// 	std::cout << "Animal: i am a just animal" << std::endl;
+// }
