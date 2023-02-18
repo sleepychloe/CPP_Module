@@ -1,0 +1,59 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   Bureaucrat.hpp                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/02/18 00:55:22 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/18 05:09:10 by yhwang           ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
+#ifndef BUREAUCRAT_HPP
+# define BUREAUCRAT_HPP
+
+#include <iostream>
+#include <string>
+#include <stdexcept>
+
+# define BLACK			"\x1b[0m"
+# define RED			"\x1b[31m"
+
+class	Bureaucrat
+{
+public:
+	Bureaucrat();
+	Bureaucrat(std::string name, int grade);
+	Bureaucrat(const Bureaucrat& bureaucrat);
+	Bureaucrat& operator=(const Bureaucrat& bureaucrat);
+	~Bureaucrat();
+
+	class	GradeTooHighException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+
+	};
+	
+	class	GradeTooLowException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+	};
+
+	const std::string	getName(void) const;
+	int			getGrade(void) const;
+	void			set_grade(int grade);
+
+	void			increment_grade(void);
+	void			decrement_grade(void);
+
+private:
+	const std::string	_name;
+	int			_grade;
+};
+
+std::ostream&	operator<<(std::ostream &ostream, const Bureaucrat& bureaucrat);
+
+#endif
