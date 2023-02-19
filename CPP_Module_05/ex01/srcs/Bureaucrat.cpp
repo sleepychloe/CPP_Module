@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 00:55:31 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/19 04:11:01 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/18 23:03:17 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/19 04:54:54 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	Bureaucrat::increment_grade(void)
 	try
 	{
 		if (_grade - 1 < 1)
-			throw (GradeTooHighException());
+			throw GradeTooHighException();
 	}
 	catch (std::exception& e)
 	{
@@ -89,13 +89,32 @@ void	Bureaucrat::decrement_grade(void)
 	try
 	{
 		if (_grade + 1 > 150)
-			throw (GradeTooLowException());
+			throw GradeTooLowException();
 	}
 	catch (std::exception& e)
 	{
 		std::cerr << RED << e.what() << BLACK << std::endl;
 	}
 	_grade++;
+}
+
+void	Bureaucrat::signForm(Form& form) const
+{
+	try
+	{
+		if (form.get_signed() == true)
+			std::cout << getName() << " signed " << form.get_name() << std::endl;
+		else
+		{
+			std::cout << getName() << " couldn't sign " << form.get_name()
+			<< " because ";
+			form.beSigned(*this);
+		}
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << RED << e.what() << BLACK << std::endl;
+	}
 }
 
 std::ostream&	operator<<(std::ostream& ostream, const Bureaucrat& bureaucrat)

@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 00:55:22 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/18 22:43:33 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/18 23:02:52 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/19 03:15:52 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,9 +16,12 @@
 #include <iostream>
 #include <string>
 #include <stdexcept>
+#include "./Form.hpp"
 
 # define BLACK			"\x1b[0m"
 # define RED			"\x1b[31m"
+
+class	Form;
 
 class	Bureaucrat
 {
@@ -47,6 +50,8 @@ public:
 
 	void			increment_grade(void);
 	void			decrement_grade(void);
+
+	void			signForm(Form& form) const;
 
 private:
 	const std::string	_name;
