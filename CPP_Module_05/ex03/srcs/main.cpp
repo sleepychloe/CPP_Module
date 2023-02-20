@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/20 02:15:01 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/20 03:44:30 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/20 21:42:29 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,19 +56,19 @@ int	main(int argc, char **argv)
 		std::cout << YELLOW << "f2: " << BLACK;
 		AForm	*f2;
 		f2 = intern.makeForm("robotomy request", "chick");
-		if (form_check_exception(f2))
+		if (!form_check_exception(f2))
 			delete f2;
 
 		std::cout << YELLOW << "f3: " << BLACK;
 		AForm	*f3;
 		f3 = intern.makeForm("presidential pardon", "shark");
-		if (form_check_exception(f3))
+		if (!form_check_exception(f3))
 			delete f3;
 
 		std::cout << YELLOW << "f4: " << BLACK;
 		AForm	*f4;
 		f4 = intern.makeForm("form", "target");
-		if (form_check_exception(f4))
+		if (!form_check_exception(f4))
 			delete f4;
 
 		std::cout << YELLOW << "f5: " << BLACK;
