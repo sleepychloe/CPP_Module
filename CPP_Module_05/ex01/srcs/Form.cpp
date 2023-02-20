@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 23:04:33 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/19 04:54:40 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/19 21:32:10 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ Form::Form(): _name(""), _signed(false), _grade_sign(1), _grade_execute(1), _sig
 }
 
 Form::Form(std::string name, const int grade_sign, const int grade_execute)
-			: _name(name), _grade_sign(grade_sign), _grade_execute(grade_execute), _signed_str("N")
+			: _name(name), _signed(false), _grade_sign(grade_sign), _grade_execute(grade_execute), _signed_str("N")
 {
 	try
 	{
@@ -51,17 +51,17 @@ Form::~Form()
 
 const char*	Form::GradeTooHighException::what(void) const throw()
 {
-	return ("Grade is too high");
+	return ("grade is too high");
 }
 
 const char*	Form::GradeTooLowException::what(void) const throw()
 {
-	return ("Grade is too low");
+	return ("grade is too low");
 }
 
-const char*	Form::IsAlreadySigned::what(void) const throw()
+const char*	Form::IsAlreadySignedException::what(void) const throw()
 {
-	return ("This form is already signed");
+	return ("this form is already signed");
 }
 
 const std::string	Form::get_name(void) const
@@ -93,6 +93,8 @@ void	Form::beSigned(const Bureaucrat& bureaucrat)
 {
 	if (get_grade_sign() < bureaucrat.getGrade())
 		throw (GradeTooLowException());
+	if (get_signed() == true)
+		throw (IsAlreadySignedException());
 	_signed = true;
 	_signed_str = "Y";
 }

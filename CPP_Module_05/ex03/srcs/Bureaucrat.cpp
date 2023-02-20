@@ -5,8 +5,8 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/02/18 00:55:31 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/19 23:19:16 by yhwang           ###   ########.fr       */
+/*   Created: 2023/02/20 02:14:57 by yhwang            #+#    #+#             */
+/*   Updated: 2023/02/20 02:16:21 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,7 +75,7 @@ void	Bureaucrat::increment_grade(void)
 	try
 	{
 		if (_grade - 1 < 1)
-			throw (GradeTooHighException());
+			throw GradeTooHighException();
 	}
 	catch (std::exception& e)
 	{
@@ -89,13 +89,46 @@ void	Bureaucrat::decrement_grade(void)
 	try
 	{
 		if (_grade + 1 > 150)
-			throw (GradeTooLowException());
+			throw GradeTooLowException();
 	}
 	catch (std::exception& e)
 	{
 		std::cerr << RED << e.what() << BLACK << std::endl;
 	}
 	_grade++;
+}
+
+void	Bureaucrat::signForm(AForm& aform) const
+{
+	try
+	{
+		aform.beSigned(*this);
+		std::cout << CYAN
+			<< getName() << " signed " << aform.get_name()
+			<< BLACK << std::endl;
+	}
+	catch (std::exception& e)
+	{
+		std::cerr << RED << getName() << " couldn't sign " << aform.get_name()
+		 	<< " because " << e.what() << BLACK << std::endl;
+	}
+}
+
+void	Bureaucrat::executeForm(AForm const& aform)
+{
+	try
+	{
+		aform.execute(*this);
+		std::cout << CYAN
+			<< getName() << " executed " << aform.get_name()
+			<< BLACK << std::endl;
+	}
+	catch(const std::exception& e)
+	{
+		std::cerr << RED << getName() << " couldn't execute " << aform.get_name()
+		 	<< " because " << e.what() << BLACK << std::endl;
+	}
+	
 }
 
 std::ostream&	operator<<(std::ostream& ostream, const Bureaucrat& bureaucrat)

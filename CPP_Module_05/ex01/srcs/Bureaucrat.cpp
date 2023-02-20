@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 23:03:17 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/19 04:54:54 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/19 21:31:45 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,18 +102,15 @@ void	Bureaucrat::signForm(Form& form) const
 {
 	try
 	{
-		if (form.get_signed() == true)
-			std::cout << getName() << " signed " << form.get_name() << std::endl;
-		else
-		{
-			std::cout << getName() << " couldn't sign " << form.get_name()
-			<< " because ";
-			form.beSigned(*this);
-		}
+		form.beSigned(*this);
+		std::cout << CYAN
+			<< getName() << " signed " << form.get_name()
+			<< BLACK << std::endl;
 	}
 	catch (std::exception& e)
 	{
-		std::cerr << RED << e.what() << BLACK << std::endl;
+		std::cerr << RED << getName() << " couldn't sign " << form.get_name()
+		 	<< " because " << e.what() << BLACK << std::endl;
 	}
 }
 

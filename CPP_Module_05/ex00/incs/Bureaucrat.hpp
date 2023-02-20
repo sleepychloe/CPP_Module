@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/18 00:55:22 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/18 22:43:33 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/19 22:57:30 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,6 @@ private:
 	int			_grade;
 };
 
-std::ostream&	operator<<(std::ostream &ostream, const Bureaucrat& bureaucrat);
+std::ostream&	operator<<(std::ostream& ostream, const Bureaucrat& bureaucrat);
 
 #endif
