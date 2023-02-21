@@ -5,12 +5,12 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/20 18:13:45 by yhwang            #+#    #+#              #
-#    Updated: 2023/02/21 06:41:53 by yhwang           ###   ########.fr        #
+#    Created: 2023/02/21 07:05:59 by yhwang            #+#    #+#              #
+#    Updated: 2023/02/21 07:59:05 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = serialize
+NAME = identify
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
@@ -18,7 +18,7 @@ RM = rm -f
 SRCS_DIR = ./srcs/
 
 FILES = $(SRCS_DIR)main \
-		$(SRCS_DIR)Serializer
+		$(SRCS_DIR)Base
 
 INCS_DIR = ./incs
 
