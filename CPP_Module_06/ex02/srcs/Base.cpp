@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/21 07:23:47 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/21 08:49:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/21 10:19:30 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@ Base*	generate(void)
 			break ;
 		default:
 			res = NULL;
-			std::cout << YELLOW << "D" << BLACK << "is returned " << std::endl;
+			std::cout << YELLOW << "NULL" << BLACK << "is returned " << std::endl;
 			break ;
 	}
 	return (res);
