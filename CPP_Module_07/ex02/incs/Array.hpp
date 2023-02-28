@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/02/26 03:36:47 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/26 05:53:21 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/02/28 06:56:36 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,12 @@ template <typename T>
 class	Array
 {
 public:
-	Array(): _array(NULL), _size(0) {};
-	Array(unsigned int n): _array(new T[n]), _size(n) {};
+	Array(): _array(NULL), _size(0) {}
+	Array(unsigned int n): _array(new T[n]), _size(n) {}
 	Array(const Array& array): _array(NULL), _size(0)
 	{
 		*this = array;
-	};
+	}
 	Array& operator=(const Array& array)
 	{
 		if (this == &array)
@@ -38,12 +38,17 @@ public:
 		for (unsigned int i = 0; i < _size ; i++)
 			_array[i] = array._array[i];
 		return (*this);
-	};
+	}
 	~Array()
 	{
 		if (_array != NULL)
 			delete[] _array;
-	};
+	}
+
+	T*	get_array(void)
+	{
+		return(_array);
+	}
 
 	class	OutOfBoundsException: public std::exception
 	{

@@ -5,20 +5,19 @@
 #                                                     +:+ +:+         +:+      #
 #    By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2023/02/27 07:50:06 by yhwang            #+#    #+#              #
-#    Updated: 2023/02/28 07:13:13 by yhwang           ###   ########.fr        #
+#    Created: 2023/02/28 06:47:36 by yhwang            #+#    #+#              #
+#    Updated: 2023/02/28 07:13:38 by yhwang           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = span
+NAME = mutant_stack
 CC = c++
 CFLAGS = -Wall -Wextra -Werror -std=c++98
 RM = rm -f
 
 SRCS_DIR = ./srcs/
 
-FILES = $(SRCS_DIR)main \
-		$(SRCS_DIR)Span
+FILES = $(SRCS_DIR)main
 
 INCS_DIR = ./incs
 
