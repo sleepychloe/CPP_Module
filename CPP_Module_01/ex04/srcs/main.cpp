@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/01/30 10:40:04 by yhwang            #+#    #+#             */
-/*   Updated: 2023/02/09 05:43:06 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/26 20:18:38 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,9 @@ int	main(int argc, char **argv)
 			<< "Please put exist file name" << std::endl;
 		return (1);
 	}
+
+	f_write.open((filename + ".replace").c_str(), std::ios::out | std::ios::trunc);
+
 	if (f_write.fail())
 	{
 		std::cout << "Error: file open error" << std::endl
@@ -55,8 +58,6 @@ int	main(int argc, char **argv)
 		f_read.close();
 		return (1);
 	}
-
-	f_write.open((filename + ".replace").c_str(), std::ios::out | std::ios::trunc);
 
 	std::string	line;
 	int		i = 0;
