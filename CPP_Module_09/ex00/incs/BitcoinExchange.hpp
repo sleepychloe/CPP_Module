@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:11 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 01:29:29 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/27 02:48:27 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,15 @@
 #include <fstream>
 #include <sstream>
 #include <cstdlib>
+#include <cctype>
+#include <iomanip>
 #include <map>
 #include <iterator>
+
+# define BLACK			"\x1b[0m"
+# define RED			"\x1b[31m"
+# define CYAN			"\x1b[36m"
+# define YELLOW			"\x1b[33m"
 
 class	BitcoinExchange
 {
@@ -35,7 +42,10 @@ private:
 	BitcoinExchange();
 	std::map<int, double>	get_data(void) const;
 	void			save_data(std::ifstream* f_read_data);
-	int			check_key_value(std::string *temp, std::string value);
+	int			empty_string_check(std::string str);
+	int			string_check(std::string str);
+	int			string_check(std::string str, char c);
+	int			check_key_value(std::string *temp, std::string value, std::string line);
 	void			print_valid_result(std::string key, std::string value, std::string key_print);
 
 	std::map<int, double>	_data;

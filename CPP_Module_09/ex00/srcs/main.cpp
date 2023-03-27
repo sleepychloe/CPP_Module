@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:55 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 01:29:38 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/27 02:08:08 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	main(int argc, char **argv)
 {
 	if (argc != 2)
 	{
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << RED << "Error: could not open file." << BLACK << std::endl;
 		return (1);
 	}
 
@@ -30,19 +30,19 @@ int	main(int argc, char **argv)
 
 	if (f_read_data.fail())
 	{
-		std::cerr << "Error: could not open database file." << std::endl;
+		std::cerr << RED << "Error: could not open database file." << BLACK << std::endl;
 		return (1);
 	}
 	if (input_file == "data.csv")
 	{
 		f_read_data.close();
-		std::cerr << "Error: please put proper input file." << std::endl;
+		std::cerr << RED << "Error: please put proper input file." << BLACK << std::endl;
 		return (1);
 	}
 	if (f_read_input.fail())
 	{
 		f_read_data.close();
-		std::cerr << "Error: could not open file." << std::endl;
+		std::cerr << RED << "Error: could not open file." << BLACK << std::endl;
 		return (1);
 	}
 
