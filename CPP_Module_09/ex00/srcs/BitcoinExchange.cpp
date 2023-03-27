@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:49 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 02:51:17 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/27 03:49:53 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ BitcoinExchange& BitcoinExchange::operator=(const BitcoinExchange& bitcoinexchan
 {
 	if (this == &bitcoinexchange)
 		return (*this);
-	this->_data = get_data();
+	this->_data = bitcoinexchange.get_data();
 	return (*this);
 }
 

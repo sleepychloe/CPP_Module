@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:11 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 02:48:27 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/27 03:48:20 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,11 +36,13 @@ public:
 	BitcoinExchange& operator=(const BitcoinExchange& bitcoinexchange);
 	~BitcoinExchange();
 
+	std::map<int, double>	get_data(void) const;
+
 	void			print_result(std::ifstream *f_read_input);
 	
 private:
 	BitcoinExchange();
-	std::map<int, double>	get_data(void) const;
+
 	void			save_data(std::ifstream* f_read_data);
 	int			empty_string_check(std::string str);
 	int			string_check(std::string str);
