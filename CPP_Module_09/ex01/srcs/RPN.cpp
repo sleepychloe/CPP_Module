@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.cpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:34 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/29 03:11:50 by acostin          ###   ########.fr       */
+/*   Updated: 2023/03/29 05:15:57 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../incs/RPN.hpp"
 
-RPN::RPN(char *input)
+RPN::RPN(std::string input)
 {
 	parse(input);
 }
@@ -35,6 +35,31 @@ RPN::~RPN()
 {
 }
 
+const char*	RPN::EmptyInputException::what(void) const throw()
+{
+	return ("input is empty");
+}
+
+const char*	RPN::InvalidInputException::what(void) const throw()
+{
+	return ("invalid input foramt");
+}
+
+const char*	RPN::InvalidCharacterException::what(void) const throw()
+{
+	return ("found invalid character(s)");
+}
+
+RPN::IterableQueue<std::string>	RPN::get_input(void) const
+{
+	return (this->_input);
+}
+
+RPN::IterableQueue<long>	RPN::get_temp(void) const
+{
+	return (this->_temp);
+}
+
 int	RPN::check_int(std::string str)
 {
 	long	num;
@@ -55,40 +80,36 @@ int	RPN::check_int(std::string str)
 
 int	RPN::check_operator(std::string str)
 {
-	if (!(str == "+" || str == "-" || str == "*" || str == "/"))
-		return (0);
-	return (1);
+	const char*	char_str = str.c_str();
+
+	if ((strncmp(char_str, "+", 1) == 0 && strlen(char_str) == 1)
+		|| (strncmp(char_str, "-", 1) == 0 && strlen(char_str) == 1)
+		|| (strncmp(char_str, "*", 1) == 0 && strlen(char_str) == 1)
+		|| (strncmp(char_str, "/", 1) == 0 && strlen(char_str) == 1))
+		return (1);
+	return (0);
 }
 
-RPN::IterableQueue<std::string>	RPN::get_input(void) const
+double	RPN::do_operation(void)
 {
-	return (this->_input);
-}
-
-RPN::IterableQueue<int>	RPN::get_temp(void) const
-{
-	return (this->_temp);
-}
-
-int	RPN::do_operation(void)
-{
-	int		n1;
-	int		n2;
-	long		res = 0;
+	double		n1;
+	double		n2;
+	double		res = 0;
 	std::string	op[10] = {"", };
 	int		i = 0;
 
 	if (_temp.size() < 2)
-		throw (std::exception());//change it later
-
-	while (check_operator(_input.front()))
+		throw (InvalidInputException());
+	
+	while (_input.size() >= 1 && check_operator(_input.front()))
 	{
 		op[i] = _input.front();
 		_input.pop();
 		i++;
 	}
+
 	if (i != (int)_temp.size() - 1)
-		throw (std::exception());//change it later
+		throw (InvalidInputException());
 
 	i--;
 	n1 = _temp.front();
@@ -119,7 +140,8 @@ int	RPN::do_operation(void)
 
 int	RPN::rpn_calculate(void)
 {
-	int	res;
+	double	res;
+	long	res_long;
 
 	while (1)
 	{
@@ -135,15 +157,24 @@ int	RPN::rpn_calculate(void)
 		if (_input.empty() == true)
 			break ;
 	}
-	std::cout << res << std::endl;
+	if (res == (long)res)
+	{
+		res_long = (long)res;
+		std::cout << res_long << std::endl;
+	}
+	else
+		std::cout << res << std::endl;
 	return (0);
 }
 
-void	RPN::parse(char *input)
+void	RPN::parse(std::string input)
 {
 	std::stringstream	ss(input);
 	int		i = 0;
 	std::string	token[100] = {"", };
+
+	if (input == "")
+		throw (EmptyInputException());
 	while (!ss.eof())
 	{
 		std::getline(ss, token[i], ' ');
@@ -154,14 +185,12 @@ void	RPN::parse(char *input)
 	for (RPN::IterableQueue<std::string>::iterator iter = _input.begin();
 		iter != _input.end(); iter++)
 	{
-		if ((!check_int(*iter) && !check_operator(*iter))
-			|| (iter == _input.begin() && !check_int(*iter))
+		if ((!check_int(*iter) && !check_operator(*iter)))
+			throw (InvalidCharacterException());
+		if ((iter == _input.begin() && !check_int(*iter))
 			|| (iter == _input.begin() + 1 && !check_int(*iter))
 			|| (iter == _input.end() - 1 && !check_operator(*iter)))
-		{
-			std::cout << RED << "Error: invalid input: " << *iter << BLACK << std::endl;
-			return ;
-		}
+			throw (InvalidInputException());
 	}
 	rpn_calculate();
 }

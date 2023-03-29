@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   RPN.hpp                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:29 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/29 02:21:49 by acostin          ###   ########.fr       */
+/*   Updated: 2023/03/29 05:06:27 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <sstream>
 #include <cctype>
 #include <cstdlib>
+#include <cstring>
 #include <queue>
 #include <deque>
 #include <iterator>
@@ -31,7 +32,7 @@
 class	RPN
 {
 public:
-	RPN(char *input);
+	RPN(std::string input);
 	RPN(const RPN& rpn);
 	RPN& operator=(const RPN& rpn);
 	~RPN();
@@ -75,19 +76,38 @@ public:
 		}
 	};
 
+	class	EmptyInputException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+	};
+
+	class	InvalidInputException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+	};
+
+	class	InvalidCharacterException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+	};
+
 	IterableQueue<std::string>	get_input(void) const;
-	IterableQueue<int>		get_temp(void) const;
+	IterableQueue<long>		get_temp(void) const;
 
 private:
 	RPN();
+
 	int				check_int(std::string str);
 	int				check_operator(std::string str);
-	void				parse(char *input);
-	int				do_operation(void);
+	double				do_operation(void);
 	int				rpn_calculate(void);
+	void				parse(std::string input);
 
 	IterableQueue<std::string>	_input;
-	IterableQueue<int>		_temp;
+	IterableQueue<long>		_temp;
 };
 
 #endif

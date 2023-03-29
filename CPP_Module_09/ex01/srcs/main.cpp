@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.cpp                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: acostin <acostin@student.42.fr>            +#+  +:+       +#+        */
+/*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:38 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/29 02:39:52 by acostin          ###   ########.fr       */
+/*   Updated: 2023/03/29 04:19:36 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ int	main(int argc, char **argv)
 	}
 	catch (const std::exception& e)
 	{
-		std::cout << "Error: " << e.what() << std::endl;;
+		std::cout << RED << "Error: " << e.what() << BLACK << std::endl;
 	}
 	return (0);
 }
