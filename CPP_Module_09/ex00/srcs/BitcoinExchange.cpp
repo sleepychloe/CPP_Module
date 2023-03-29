@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:49 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 03:49:53 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/03/29 05:19:41 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -260,7 +260,7 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 {
 	std::string		line = "";
 	std::string		key_value[2] = {"", };
-	std::string		temp[3] = {"", };
+	std::string		temp[10] = {"", };
 	std::string		key = "";
 
 	while (std::getline(*f_read_input, line))
