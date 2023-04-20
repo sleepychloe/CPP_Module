@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/30 05:13:18 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/20 23:31:42 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,49 +97,85 @@ void	PmergeMe::print_list_container(void)
 	std::cout << BLACK << std::endl;
 }
 
-void	PmergeMe::merge_vector(int left, int right)
+void	PmergeMe::combine_vector(int left, int mid, int right)
 {
-	std::cout << "left: " << _vector_container.at(left) << ", right: " << _vector_container.at(right) << std::endl;
+	int	l = mid - left + 1;
+	int	r = right - mid;
+
+	std::vector<int>	v_left(l);
+	std::vector<int>	v_right(r);
+
+	for (int i = 0; i < l; i++)
+		v_left[i] = _vector_container.at(left + i);
+	for (int i = 0; i < r; i++)
+		v_right[i] = _vector_container.at(mid + 1 + i);
+
+	int	x = 0;
+	int	y = 0;
+	int	z = left;
+	while (x < l && y < r)
+	{
+		if (v_left[x] <= v_right[y])
+		{
+			_vector_container.at(z) = v_left[x];
+			x++;
+		}
+		else
+		{
+			_vector_container.at(z) = v_right[y];
+			y++;
+		}
+		z++;
+	}
+	while (x < l)
+	{
+		_vector_container.at(z) = v_left[x];
+		x++;
+		z++;
+	}
+	while (y < r)
+	{
+		_vector_container.at(z) = v_right[y];
+		y++;
+		z++;
+	}
 }
 
-void	PmergeMe::split_vector(int left, int right)
+void	PmergeMe::divide_vector(int left, int right)
 {
-	if (right == left + 1)
+	if (left >= right)
 		return ;
 
-	int	mid = (left + right) / 2;
+	if (right - left <= 3)
+		insert_sort_vector(left, right);
 
-	split_vector(left, mid);
-	split_vector(mid, right);
-	merge_vector(left, right);
+	int	mid = (left + right - 1) / 2;
+
+	divide_vector(left, mid);
+	divide_vector(mid + 1, right);
+	combine_vector(left, mid, right);
 }
 
 void	PmergeMe::merge_sort_vector(void)
 {
-	split_vector(0, _vector_container.size() - 1);
+	divide_vector(0, _vector_container.size() - 1);
 }
 
-void	PmergeMe::insert_sort_vector(void)
+void	PmergeMe::insert_sort_vector(int left, int right)
 {
-	
+	for (int i = left; i < right; i++)
+	{
+		for (int j = i + 1; j > left && _vector_container.at(j) < _vector_container.at(j - 1); j--)
+			std::swap(_vector_container.at(j), _vector_container.at(j - 1));
+	}
 }
 
-void	PmergeMe::merge_insert_sort_vector(void)
+void	PmergeMe::sort_vector(void)
 {
+	long unsigned int	len = _vector_container.size();
 
-}
-
-void	PmergeMe::merge_sort_list(void)
-{
-
-}
-
-void	PmergeMe::insert_sort_list(void)
-{
-	
-}
-
-void	PmergeMe::merge_insert_sort_list(void)
-{
-
+	if (len <= 10)
+		insert_sort_vector(0, _vector_container.size() - 1);
+	else
+		merge_sort_vector();
 }
