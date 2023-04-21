@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:34 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/29 05:15:57 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/21 19:39:36 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,47 +92,45 @@ int	RPN::check_operator(std::string str)
 
 double	RPN::do_operation(void)
 {
-	double		n1;
-	double		n2;
-	double		res = 0;
-	std::string	op[10] = {"", };
-	int		i = 0;
+	double				res = 0;
+	IterableQueue<std::string>	op;
 
 	if (_temp.size() < 2)
 		throw (InvalidInputException());
 	
 	while (_input.size() >= 1 && check_operator(_input.front()))
 	{
-		op[i] = _input.front();
+		op.push(_input.front());
 		_input.pop();
-		i++;
 	}
 
-	if (i != (int)_temp.size() - 1)
+	if (op.size() != _temp.size() - 1)
 		throw (InvalidInputException());
+	
+	int		size = _temp.size();
+	int		n[size];
 
-	i--;
-	n1 = _temp.front();
-	_temp.pop();
-	n2 = _temp.front();
-	_temp.pop();
-	while (i >= 0)
+	for (int i = 0; i < size; i++)
 	{
-		if (op[i] == "+")
-			res = n1 + n2;
-		else if (op[i] == "-")
-			res = n1 - n2;
-		else if (op[i] == "*")
-			res = n1 * n2;
-		else if (op[i] == "/")
-			res = n1 / n2;
-		if (i >= 1)
-		{
-			n1 = res;
-			n2 = _temp.front();
-			_temp.pop();
-		}
-		i--;
+		n[i] = _temp.front();
+		_temp.pop();
+	}
+	size--;
+
+	IterableQueue<std::string>::iterator	iter = op.begin();
+	while (size - 1 >= 0 && iter != op.end())
+	{
+		if (*iter == "+")
+			res = n[size - 1] + n[size];
+		else if (*iter == "-")
+			res = n[size - 1] - n[size];
+		else if (*iter == "*")
+			res = n[size - 1] * n[size];
+		else if (*iter == "/")
+			res = n[size - 1] / n[size];
+		n[size - 1] = res;
+		size--;
+		iter++;
 	}
 	_temp.push(res);
 	return (res);

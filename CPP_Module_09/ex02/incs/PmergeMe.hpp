@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:48 by yhwang            #+#    #+#             */
-/*   Updated: 2023/04/20 22:49:07 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/21 13:35:10 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,8 @@ public:
 	void			print_list_container(void);
 
 	void			sort_vector(void);
-	void			merge_sort_vector(void);
-	void			insert_sort_vector(int left, int right);
+	void			sort_list(void);
+	
 
 private:
 	PmergeMe();
@@ -50,7 +50,10 @@ private:
 	void			parse(int argc, char **argv);
 
 	void			combine_vector(int left, int mid, int right);
-	void			divide_vector(int left, int right);
+	void			combine_list(int left, int mid, int right);
+	void			merge_sort(int left, int right, std::string container);
+
+	void			insert_sort(int left, int right, std::string container);
 
 	std::vector<int>	_vector_container;
 	std::list<int>		_list_container;
