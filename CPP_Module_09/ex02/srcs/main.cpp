@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:02:01 by yhwang            #+#    #+#             */
-/*   Updated: 2023/04/21 17:46:20 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/22 13:53:22 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,9 @@ int	main(int argc, char **argv)
 		if (value_check != sorted_v.size())
 		{
 			std::cout << RED << "Error: failed to sort" << BLACK << std::endl;
+			std::cout << CYAN;
+			p.print_vector_container();
+			std::cout << BLACK;
 			std::cout << YELLOW;
 			p.print_list_container();
 			std::cout << BLACK;

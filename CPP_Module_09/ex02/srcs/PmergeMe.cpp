@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/30 02:01:56 by yhwang            #+#    #+#             */
-/*   Updated: 2023/04/21 18:22:59 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/22 15:15:58 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -129,65 +129,6 @@ void	PmergeMe::combine_vector(int left, int mid, int right)
 
 void	PmergeMe::combine_list(int left, int mid, int right)
 {
-	// int	l = mid - left + 1;
-	// int	r = right - mid;
-
-	// std::list<int>		l_list;
-	// std::list<int>		r_list;
-
-	// std::list<int>::iterator	it_l = _list_container.begin();
-	// std::advance(it_l, left);
-	// for (int i = 0; i < l; i++)
-	// {
-	// 	l_list.push_back(*it_l);
-	// 	it_l++;
-	// }
-
-	// std::list<int>::iterator	it_r = _list_container.begin();
-	// std::advance(it_r, mid + 1);
-	// for (int i = 0; i < r; i++)
-	// {
-	// 	r_list.push_back(*it_r);
-	// 	it_r++;
-	// }
-
-	// std::list<int>::iterator	x = l_list.begin();
-	// std::list<int>::iterator	y = r_list.begin();
-	// int				_x = 0;
-	// int				_y = 0;
-	// std::list<int>::iterator	iter = _list_container.begin();
-	// std::advance(iter, left);
-	// while (_x < l && _y < r)
-	// {
-	// 	if (*x <= *y)
-	// 	{
-	// 		*iter = *x;
-	// 		x++;
-	// 		_x++;
-	// 	}
-	// 	else
-	// 	{
-	// 		*iter = *y;
-	// 		y++;
-	// 		_y++;
-	// 	}
-	// 	iter++;
-	// }
-	// while (_x < l)
-	// {
-	// 	*iter = *x;
-	// 	x++;
-	// 	iter++;
-	// 	_x++;
-	// }
-	// while (_y < r)
-	// {
-	// 	*iter = *y;
-	// 	y++;
-	// 	iter++;
-	// 	_y++;
-	// }
-
 	int	l = mid - left + 1;
 	int	r = right - mid;
 
@@ -201,7 +142,6 @@ void	PmergeMe::combine_list(int left, int mid, int right)
 		l_left[i] = *it_l;
 		it_l++;
 	}
-
 	std::list<int>::iterator	it_r = _list_container.begin();
 	std::advance(it_r, mid + 1);
 	for (int i = 0; i < r; i++)
@@ -239,14 +179,6 @@ void	PmergeMe::merge_sort(int left, int right, std::string container)
 	if (left >= right)
 		return ;
 
-	if (right - left <= 3)
-	{
-		if (container == "vector")
-			insert_sort(left, right, "vector");
-		else if (container == "list")
-			insert_sort(left, right, "list");
-	}
-
 	int	mid = (left + right - 1) / 2;
 
 	merge_sort(left, mid, container);
@@ -259,20 +191,35 @@ void	PmergeMe::merge_sort(int left, int right, std::string container)
 
 void	PmergeMe::insert_sort(int left, int right, std::string container)
 {
-	std::list<int>::iterator	iter = _list_container.begin();
-
-	for (int i = left; i < right; i++)
+	if (container == "vector")
 	{
-		for (int j = i + 1; j > left && _vector_container.at(j) < _vector_container.at(j - 1); j--)
+		for (int i = left; i < right; i++)
 		{
-			if (container == "vector")
+			for (int j = i + 1; j > left && _vector_container.at(j) < _vector_container.at(j - 1); j--)
 				std::swap(_vector_container.at(j), _vector_container.at(j - 1));
-			// else if (container == "list")
-			// {
-			// 	std::iter_swap(iter + 1, iter);
-			// }
 		}
-		iter++;
+	}
+	else if (container == "list")
+	{
+		std::list<int>::iterator	it_i = _list_container.begin();
+		std::list<int>::iterator	it_j;
+		std::list<int>::iterator	it;
+
+		std::advance(it_i, left);
+		for (int i = left; i < right; i++)
+		{
+			it_j = it_i;
+			it_j++;
+			for (int j = i + 1; j > left; j--)
+			{
+				it = it_j;
+				it--;
+				if (*it_j < *it)
+					std::swap(*it_j, *it);
+				it_j--;	
+			}
+			it_i++;
+		}
 	}
 }
 
@@ -280,7 +227,7 @@ void	PmergeMe::sort_vector(void)
 {
 	long unsigned int	len = _vector_container.size();
 
-	if (len <= 10)
+	if (len <= 15)
 		insert_sort(0, _vector_container.size() - 1, "vector");
 	else
 		merge_sort(0, _vector_container.size() - 1, "vector");
@@ -288,10 +235,10 @@ void	PmergeMe::sort_vector(void)
 
 void	PmergeMe::sort_list(void)
 {
-	// long unsigned int	len = _list_container.size();
+	long unsigned int	len = _list_container.size();
 
-	// if (len <= 10)
-	// 	insert_sort(0, _list_container.size() - 1, "list");
-	// else
+	if (len <= 15)
+		insert_sort(0, _list_container.size() - 1, "list");
+	else
 		merge_sort(0, _list_container.size() - 1, "list");
 }
