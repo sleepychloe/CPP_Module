@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:49 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/29 05:19:41 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/23 18:57:44 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -198,7 +198,7 @@ int	BitcoinExchange::check_key_value(std::string *temp, std::string value, std::
 		std::cout << RED << "Error: not a positive number." << BLACK << std::endl;
 		return (1);
 	}
-	if (atof(value.c_str()) >= 2147483648)
+	if (atof(value.c_str()) > 1000)
 	{
 		std::cout << RED << "Error: too large number." << BLACK << std::endl;
 		return (1);
@@ -206,11 +206,16 @@ int	BitcoinExchange::check_key_value(std::string *temp, std::string value, std::
 	return (0);
 }
 
-void	BitcoinExchange::print_valid_result(std::string key, std::string value, std::string key_print)
+void	BitcoinExchange::print_valid_result(std::string *temp, std::string key, std::string value, std::string key_print)
 {
 	int	map_key = atoi(key.c_str());
 	double	map_value = -1;
 
+	if (atoi(temp[1].c_str()) < 10 && key[4] != '0')
+	{
+		std::string	temp = key.substr(4, std::string::npos);
+		key = key.substr(0, 4).append("0").append(temp);
+	}
 	std::map<int, double>::iterator	iter = this->_data.begin();
 	int	start_date = (*iter).first;
 	int	start_date_dd = start_date % 100;
@@ -228,16 +233,13 @@ void	BitcoinExchange::print_valid_result(std::string key, std::string value, std
 	{
 		if (map_value != -1)
 			break ;
-		if (map_key < start_date)
-		{
-			std::cout << RED << "Error: invalid date: the first date in the database is "
-				<< start_date_yyyy << "-" << std::setw(2) << std::setfill('0')
-				<< start_date_mm << "-" << std::setw(2) << std::setfill('0') << start_date_dd << ".";
-			break ;
-		}
-		
 		for (iter = this->_data.begin(); iter != this->_data.end(); iter++)
 		{
+			if (iter == this->_data.begin() && (*iter).first > map_key)
+			{
+				map_key = (*iter).first;
+				map_value = (*iter).second;
+			}
 			if ((*iter).first == map_key)
 			{
 				map_value = (*iter).second;
@@ -248,6 +250,13 @@ void	BitcoinExchange::print_valid_result(std::string key, std::string value, std
 	}
 	if (map_value != -1)
 		std::cout << key_print << "=> " << value << " = " << atof(value.c_str()) * map_value;
+	if (atoi(key.c_str()) < start_date)
+	{
+		std::cout << CYAN << " (the start date in the database is "
+		<< start_date_yyyy << "-" << std::setw(2) << std::setfill('0')
+		<< start_date_mm << "-" << std::setw(2) << std::setfill('0') << start_date_dd
+		<< ". calculated with start date.)";
+	}
 	if (atoi(key.c_str()) > end_date)
 		std::cout << CYAN << " (the last date in the database is "
 			<< end_date_yyyy << "-" << std::setw(2) << std::setfill('0')
@@ -262,6 +271,7 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 	std::string		key_value[2] = {"", };
 	std::string		temp[10] = {"", };
 	std::string		key = "";
+	int			flag = 0;
 
 	while (std::getline(*f_read_input, line))
 	{
@@ -270,6 +280,7 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 		if (line.find("|") == std::string::npos)
 		{
 			std::cout << RED << "Error: bad input" << YELLOW << " => " << line << BLACK << std::endl;
+			flag++;
 			continue ;
 		}
 
@@ -296,6 +307,7 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 				key_value[1] = key_value[1].substr(1, std::string::npos);
 			i++;
 		}
+		flag++;
 		if (temp[1] == "" || temp[2] == "" || key_value[1] == "")
 		{
 			std::cout << RED << "Error: bad input" << YELLOW << " => " << line << BLACK << std::endl;
@@ -303,6 +315,8 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 		}
 		if (check_key_value(temp, key_value[1], line))
 			continue ;
-		print_valid_result(key_value[0], key_value[1], key);
+		print_valid_result(temp, key_value[0], key_value[1], key);
 	}
+	if (flag == 0)
+		std::cout << RED << "Error: file does not have any content" << BLACK << std::endl;
 }

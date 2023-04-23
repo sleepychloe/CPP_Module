@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:11 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/27 03:48:20 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/23 18:42:16 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ private:
 	int			string_check(std::string str);
 	int			string_check(std::string str, char c);
 	int			check_key_value(std::string *temp, std::string value, std::string line);
-	void			print_valid_result(std::string key, std::string value, std::string key_print);
+	void			print_valid_result(std::string *temp, std::string key, std::string value, std::string key_print);
 
 	std::map<int, double>	_data;
 
