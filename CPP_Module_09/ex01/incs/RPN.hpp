@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:29 by yhwang            #+#    #+#             */
-/*   Updated: 2023/03/30 01:59:37 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/26 22:38:42 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,12 @@ public:
 	};
 
 	class	InvalidCharacterException: public std::exception
+	{
+	public:
+		virtual const char*	what(void) const throw();
+	};
+
+	class	DivisionByZeroException: public std::exception
 	{
 	public:
 		virtual const char*	what(void) const throw();

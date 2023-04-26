@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/26 19:52:49 by yhwang            #+#    #+#             */
-/*   Updated: 2023/04/23 18:57:44 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/26 22:32:52 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -268,7 +268,7 @@ void	BitcoinExchange::print_valid_result(std::string *temp, std::string key, std
 void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 {
 	std::string		line = "";
-	std::string		key_value[2] = {"", };
+	std::string		key_value[10] = {"", };
 	std::string		temp[10] = {"", };
 	std::string		key = "";
 	int			flag = 0;
@@ -305,9 +305,21 @@ void	BitcoinExchange::print_result(std::ifstream *f_read_input)
 			}
 			if (i == 1 && key_value[1] != "")
 				key_value[1] = key_value[1].substr(1, std::string::npos);
+			if (i > 1)
+			{
+				std::cout << RED << "Error: bad input" << YELLOW << " => " << line << BLACK << std::endl;
+				flag++;
+				continue ;
+			}
 			i++;
 		}
 		flag++;
+		int	len = key_value[1].length();
+		while (key_value[1][len - 1] == ' ' || key_value[1][len - 1] == '\t')
+		{
+			key_value[1][len - 1] = '\0';
+			len--;
+		}
 		if (temp[1] == "" || temp[2] == "" || key_value[1] == "")
 		{
 			std::cout << RED << "Error: bad input" << YELLOW << " => " << line << BLACK << std::endl;

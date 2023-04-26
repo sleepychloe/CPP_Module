@@ -6,7 +6,7 @@
 /*   By: yhwang <yhwang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/03/27 02:54:34 by yhwang            #+#    #+#             */
-/*   Updated: 2023/04/21 19:39:36 by yhwang           ###   ########.fr       */
+/*   Updated: 2023/04/26 22:37:09 by yhwang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,11 @@ const char*	RPN::InvalidInputException::what(void) const throw()
 const char*	RPN::InvalidCharacterException::what(void) const throw()
 {
 	return ("found invalid character(s)");
+}
+
+const char*	RPN::DivisionByZeroException::what(void) const throw()
+{
+	return ("cannot divide by 0");
 }
 
 RPN::IterableQueue<std::string>	RPN::get_input(void) const
@@ -127,7 +132,11 @@ double	RPN::do_operation(void)
 		else if (*iter == "*")
 			res = n[size - 1] * n[size];
 		else if (*iter == "/")
+		{
+			if (n[size] == 0)
+				throw (DivisionByZeroException());
 			res = n[size - 1] / n[size];
+		}
 		n[size - 1] = res;
 		size--;
 		iter++;
